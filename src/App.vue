@@ -1,16 +1,17 @@
 <template>
-  <div id="app">
-    vue-postcss-scss
-  </div>
+	<div id="app">
+		vue-postcss-scss
+		<wxft></wxft>
+	</div>
 </template>
 
 <script>
 
-
+import wxft from './base/Footer/Footer'
 export default {
   name: 'App',
   components: {
-
+    wxft
   }
 }
 </script>
@@ -24,3 +25,7 @@ export default {
   margin-top: 60px;
 }
 </style>
+
+
+
+
