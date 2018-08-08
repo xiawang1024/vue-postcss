@@ -29,18 +29,6 @@ export default {
   },
   methods:{
     voteHandler(item) {
-      weui.alert('请先关注《国际频道》公众号，再进行投票！谢谢！', {
-          buttons: [{
-              label: '去关注',
-              type: 'primary',
-              onClick: () => { console.log('ok')
-                setTimeout(() => {
-                  let height = document.scrollingElement.scrollHeight;
-                  document.scrollingElement.scrollTop = height;
-                }, 150);
-              }
-          }]
-      });
       let userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'));
       voteFetch(item.id,userInfo.openid,weChat.getQueryString('code'),item.name).then(res => {
         let data = res.data
@@ -48,13 +36,25 @@ export default {
         if(status === 'ok') {
           weui.toast('投票成功！');
         }else if(status === 'warn'){
-          weui.alert('未关注公众号')
-        }else if(status === ''){
-
+          weui.alert('投票未开始！')
         }else if(status === 'error') {
-
+          weui.alert('已投票！')
         }else {
-          weui.alert('投票失败，原因未知！')
+          weui.alert('请先关注《国际频道》公众号，再进行投票！谢谢！', {
+						buttons: [
+							{
+								label: '去关注',
+								type: 'primary',
+								onClick: () => {
+									console.log('ok');
+									setTimeout(() => {
+										let height = document.scrollingElement.scrollHeight;
+										document.scrollingElement.scrollTop = height;
+									}, 150);
+								}
+							}
+						]
+					});
         }
       }).catch(() => {
         weui.alert('投票失败，网络错误！')

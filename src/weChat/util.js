@@ -1,4 +1,5 @@
 import wx from 'weixin-js-sdk';
+import weui from 'weui.js';
 import axios from 'axios';
 import Qs from 'qs';
 import { appId, shareLink, shareTitle, shareDesc, shareImg } from './config';
@@ -58,6 +59,22 @@ class WeChat {
 				let data = res.data;
 				if (data.status == 'ok') {
 					this.setStorage('WXHNDTOPENID', JSON.stringify(data.data));
+				} else if (data.status === 'warn') {
+					weui.alert('请先关注《国际频道》公众号，再进行投票！谢谢！', {
+						buttons: [
+							{
+								label: '去关注',
+								type: 'primary',
+								onClick: () => {
+									console.log('ok');
+									setTimeout(() => {
+										let height = document.scrollingElement.scrollHeight;
+										document.scrollingElement.scrollTop = height;
+									}, 150);
+								}
+							}
+						]
+					});
 				} else {
 					this.redirectUrl();
 				}
