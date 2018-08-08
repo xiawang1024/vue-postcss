@@ -1,8 +1,8 @@
 <template>
   <div class="g-footer">
-    <div aspectratio w-16-9>
+    <!-- <div aspectratio w-16-9>
       <div aspectratio-content></div>
-    </div>
+    </div> -->
     <div class="g-download">
       <a href="http://www.hndt.com/app/download/index.html" class="down">下载河南广播APP</a>
       <p class="desc">关注身边发生的事 河南人自己的APP</p>
