@@ -38,7 +38,7 @@ export default {
         }else if(status === 'warn'){
           weui.alert('投票未开始！')
         }else if(status === 'error') {
-          weui.alert('已投票！')
+          weui.alert('您的投票已用完，谢谢！')
         }else {
           weui.alert('请先关注《国际频道》公众号，再进行投票！谢谢！', {
 						buttons: [

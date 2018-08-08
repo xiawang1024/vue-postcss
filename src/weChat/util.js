@@ -66,11 +66,13 @@ class WeChat {
 								label: '去关注',
 								type: 'primary',
 								onClick: () => {
-									console.log('ok');
-									setTimeout(() => {
-										let height = document.scrollingElement.scrollHeight;
-										document.scrollingElement.scrollTop = height;
-									}, 150);
+									// console.log('ok');
+									// setTimeout(() => {
+									// 	let height = document.scrollingElement.scrollHeight;
+									// 	document.scrollingElement.scrollTop = height;
+									// }, 150);
+									window.location.href =
+										'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzA5NzI1MTMxNg==#wechat_webview_type=1&wechat_redirect';
 								}
 							}
 						]

@@ -1,13 +1,12 @@
 import axios from 'axios';
 import Qs from 'qs';
-import { id } from 'postcss-selector-parser';
 
-const voteFetch = (id, openid, code, title) =>
+const voteFetch = (id, openId, code, title) =>
 	axios.post(
-		'http://a.weixin.hndt.com/boom/api/battle/entrevoteadd',
+		'https://a.weixin.hndt.com/boom/api/battle/entrevoteadd',
 		Qs.stringify({
 			id,
-			openid,
+			openId,
 			code,
 			title
 		})
