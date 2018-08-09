@@ -1,5 +1,5 @@
 <template>
-  <div class="g-header">
+  <div class="g-header container">
     <div class="g-hd">
       <a href="http://www.hndt.com" class="link">
       </a>
