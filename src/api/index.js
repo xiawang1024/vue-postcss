@@ -11,4 +11,5 @@ const voteFetch = (id, openId, code, title) =>
 			title
 		})
 	);
-export { voteFetch };
+const voteNumFetch = () => axios.get('https://a.weixin.hndt.com/boom/api/battle/entrevoteshowlist');
+export { voteFetch, voteNumFetch };

@@ -6,6 +6,7 @@
         <li class="list" v-for="item of dataList" :key="item.id">
           <span class="order">{{item.id}}、</span>
           <span class="name">{{item.name}}</span>
+          <span class="num">{{voteNumList[item.id] || 0}} 票</span>
           <button class="vote" @click="voteHandler(item)">投票</button>
         </li>
       </ul>
@@ -19,13 +20,17 @@ import weui from 'weui.js'
 
 import { WeChat } from 'weChat/util';
 const weChat = new WeChat();
-import { voteFetch } from 'api/index'
+import { voteFetch, voteNumFetch } from 'api/index'
 export default {
   name:'g-list',
   data() {
     return {
-      dataList:DATA
+      dataList:DATA,
+      voteNumList:null
     }
+  },
+  created() {
+    this.voteNumDataFetch()
   },
   methods:{
     voteHandler(item) {
@@ -35,6 +40,7 @@ export default {
         let { status } = data;
         if(status === 'ok') {
           weui.toast('投票成功！');
+          this.voteNumDataFetch()
         }else if(status === 'warn'){
           weui.alert('投票未开始！')
         }else if(status === 'error') {
@@ -58,6 +64,14 @@ export default {
         }
       }).catch(() => {
         weui.alert('投票失败，网络错误！')
+      })
+    },
+    voteNumDataFetch() {
+      voteNumFetch().then(res => {
+        let data = res.data
+        this.$nextTick(() => {
+          this.voteNumList = data
+        })
       })
     }
   }
@@ -91,11 +105,31 @@ export default {
       .order{
         display: inline-block;
         width: 60px;
-        text-align: right
+        text-align: right;
+        font-size: 28px;
+      }
+      .name{
+        flex:1;
+        padding-left: 10px;
+        font-size: 30px;
+      }
+      .num{
+        display: inline-block;
+        flex: 0 0 100px;
+        width: 100px;
+        height: 60px;
+        text-align: center;
+        line-height: 60px;
+        border-radius: 8px;
+        font-size: 24px;
+        color:white;
+        background:#0081dc;
       }
       .vote{
+        margin-left: 10px;
         display: inline-block;
-        width: 150px;
+        flex: 0 0 100px;
+        width: 100px;
         height: 60px;
         color:white;
         border:none;
