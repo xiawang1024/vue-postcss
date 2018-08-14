@@ -53,7 +53,7 @@ class WeChat {
 		axios({
 			method: 'post',
 			url: CODE_URL,
-			data: Qs.stringify({ code: this.getQueryString('code'), cate: this.appId })
+			data: Qs.stringify({ code: this.getQueryString('code'), state: this.appId })
 		})
 			.then((res) => {
 				let data = res.data;
