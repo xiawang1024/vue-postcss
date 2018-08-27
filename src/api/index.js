@@ -11,4 +11,17 @@ const voteFetch = (id, openId, code, title) =>
 		})
 	);
 const voteNumFetch = () => axios.get('https://a.weixin.hndt.com/boom/api/battle/entrevoteshowlist');
-export { voteFetch, voteNumFetch };
+
+const signUp = (openId, name, mobile, company, position, signId = 3) =>
+	axios.post(
+		'http://a.weixin.hndt.com/boom/openapi/sign/add',
+		Qs.stringify({
+			openId,
+			name,
+			mobile,
+			company,
+			position,
+			signId
+		})
+	);
+export { voteFetch, voteNumFetch, signUp };
