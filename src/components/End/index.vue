@@ -1,16 +1,16 @@
 <template>
   <div class="end">
     <div class="top">
-      <div class="logo"></div>
-      <div class="text">2018年广播融媒体技术专业委员会年会</div>
-      <div class="img"></div>
+      <div class="logo ani" swiper-animate-effect="flip" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
+      <div class="text ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0s">2018年广播融媒体技术专业委员会年会</div>
+      <div class="img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
     </div>
-    <div class="title">
+    <div class="title ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
 
     </div>
-    <div class="map"></div>
-    <button class="btn" @click="go">去导航</button>
-    <div class="bottom"></div>
+    <div class="map ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0.85s"></div>
+    <button class="btn ani" @click="go" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1.35s">去导航</button>
+    <div class="bottom ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="1.5s"></div>
   </div>
 </template>
 

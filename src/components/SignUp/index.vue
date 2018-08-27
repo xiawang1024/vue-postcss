@@ -1,14 +1,14 @@
 <template>
   <div class="signUp">
     <div class="top">
-      <div class="logo"></div>
-      <div class="text">2018年广播融媒体技术专业委员会年会</div>
-      <div class="img"></div>
+      <div class="logo ani" swiper-animate-effect="flip" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
+      <div class="text ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0s">2018年广播融媒体技术专业委员会年会</div>
+      <div class="img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
     </div>
-    <div class="title">
+    <div class="title ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
 
     </div>
-    <div class="form">
+    <div class="form ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.85s">
       <p class="item">
         <label for="">姓名：</label>
         <input type="text" v-model="name">
@@ -26,7 +26,7 @@
         <input type="text" v-model="position">
       </p>
     </div>
-    <button class="btn" @click="postData">提交</button>
+    <button class="btn ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1.25s" @click="postData">提交</button>
   </div>
 </template>
 

@@ -1,20 +1,20 @@
 <template>
   <div class="one">
     <div class="top">
-      <div class="logo"></div>
-      <div class="text"></div>
-      <div class="img"></div>
+      <div class="logo ani" swiper-animate-effect="flip" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
+
+      <div class="img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
     </div>
-    <div class="title">
+    <div class="title ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
 
     </div>
-    <div class="titlec"></div>
-    <div class="time">
+    <div class="titlec ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="1s"></div>
+    <div class="time ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="1.5s">
       <p class="item">2018年9月18日签到</p>
       <p class="item">会议时间</p>
       <p class="item">2018年9月19日--2018年9月21日</p>
     </div>
-    <div class="person">
+    <div class="person ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1s" swiper-animate-delay="1.75s">
       <p class="item">
         <span class="name">会议主办：</span>
         <span class="desc">中国电影电视技术学会</span>
