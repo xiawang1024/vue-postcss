@@ -31,10 +31,10 @@ export default {
     return {
       swiperOption: {
 				direction : 'vertical',
-				// loop : true,
-				pagination: {
-					el: '.swiper-pagination'
-				},
+				loop : true,
+				// pagination: {
+				// 	el: '.swiper-pagination'
+				// },
 				on:{
 					init(){
 						swiperAnimateCache(this); //隐藏动画元素

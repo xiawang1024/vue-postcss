@@ -38,7 +38,6 @@
 <script>
 import { WeChat } from 'weChat/util'
 const weChat = new WeChat()
-import weui from 'weui.js'
 import { signUp, getUserInfo } from 'api/index'
 
 import Simplert from 'vue2-simplert'
@@ -66,23 +65,23 @@ export default {
   methods:{
     postData() {
       if(!this.userName){
-        weui.topTips('请填写您的姓名！')
+        this._warnTips('请填写您的姓名')
         return
       }
       if(!this.mobile){
-        weui.topTips('请填写您的手机号！')
+        this._warnTips('请填写您的手机号')
         return
       }
-      if(!this._checkPhone(this.mobile)){
-        weui.topTips('手机号不正确，请重新填写！')
+      if(!this._checkPhone(this.mobile.trim())){
+        this._warnTips('手机号不正确，请重新填写')
         return
       }
       if(!this.company){
-        weui.topTips('请填写您的单位！')
+        this._warnTips('请填写您的单位')
         return
       }
       if(!this.position){
-        weui.topTips('请填写您的职务！')
+        this._warnTips('请填写您的职务')
         return
       }
       let userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
@@ -92,11 +91,11 @@ export default {
         if(status === 'ok') {
           this._successTips()
         }else {
-          alert('报名失败，请重试！')
+          this._errorTips('报名失败，请重试！')
         }
       }).catch(err => {
         console.log(err)
-        alert('网络错误！请重试')
+        this._errorTips('网络错误，请重试')
       })
     },
     _onClose() {
@@ -111,6 +110,22 @@ export default {
       }
       this.$refs.simplert.openSimplert(obj)
     },
+    _warnTips(message) {
+      let obj = {
+        message,
+        type: 'warning',
+        customCloseBtnText:'关闭'
+      }
+      this.$refs.simplert.openSimplert(obj)
+    },
+    _errorTips(message) {
+      let obj = {
+        message,
+        type: 'error',
+        customCloseBtnText:'关闭'
+      }
+      this.$refs.simplert.openSimplert(obj)
+    },
     _getUserInfo() {
       let userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'));
       getUserInfo(userInfo.openid).then(res => {
@@ -121,6 +136,7 @@ export default {
           this.userInfo = null;
         }
       }).catch(error => {
+        this._errorTips('网络错误，请重试')
         console.log(error)
       })
     },
