@@ -110,13 +110,13 @@ export default {
   }
   .person{
     width: 630px;
-    margin:78px auto 0;
+    margin:70px auto 0;
     text-align: center;
     color: #fff;
     .item{
       display: flex;
       font-size: 29px;
-      margin-bottom: 35px;
+      margin-bottom: 25px;
       .name{
         flex:0 0 165px;
       }
