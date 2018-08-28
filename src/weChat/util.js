@@ -3,6 +3,11 @@ import axios from 'axios';
 import Qs from 'qs';
 import { appId, shareLink, shareTitle, shareDesc, shareImg } from './config';
 
+/**
+ * Bus
+ */
+import BUS from 'common/js/bus.js';
+
 const SHARE_URL = 'https://a.weixin.hndt.com/boom/at/sign';
 const CODE_URL = 'https://a.weixin.hndt.com/boom/wx/access/subscribe';
 
@@ -52,12 +57,13 @@ class WeChat {
 		axios({
 			method: 'post',
 			url: CODE_URL,
-			data: Qs.stringify({ code: this.getQueryString('code'), state: this.appId })
+			data: Qs.stringify({ code: this.getQueryString('code'), state: this.appId, subscribe: 'false' })
 		})
 			.then((res) => {
 				let data = res.data;
 				if (data.status == 'ok') {
 					this.setStorage('WXHNDTOPENID', JSON.stringify(data.data));
+					BUS.$emit('getUserInfo');
 				} else {
 					this.redirectUrl();
 				}

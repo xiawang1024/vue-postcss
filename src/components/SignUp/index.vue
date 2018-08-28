@@ -39,6 +39,10 @@
 import { WeChat } from 'weChat/util'
 const weChat = new WeChat()
 import { signUp, getUserInfo } from 'api/index'
+/**
+ * Bus
+ */
+import BUS from 'common/js/bus.js';
 
 import Simplert from 'vue2-simplert'
 import UserInfo from 'base/UserInfo/index'
@@ -60,7 +64,11 @@ export default {
   },
   mounted() {
     // this._successTips()
-    this._getUserInfo()
+    BUS.$on('getUserInfo',() => {
+      setTimeout(() => {
+        this._getUserInfo()
+      },300)
+    })
   },
   methods:{
     postData() {
@@ -95,7 +103,7 @@ export default {
         }
       }).catch(err => {
         console.log(err)
-        this._errorTips('网络错误，请重试')
+        // this._errorTips('网络错误，请重试')
       })
     },
     _onClose() {

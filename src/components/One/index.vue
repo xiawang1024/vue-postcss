@@ -116,7 +116,7 @@ export default {
     .item{
       display: flex;
       font-size: 29px;
-      margin-bottom: 25px;
+      margin-bottom: 40px;
       .name{
         flex:0 0 165px;
       }
