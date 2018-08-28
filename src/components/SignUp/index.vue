@@ -8,25 +8,30 @@
     <div class="title ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
 
     </div>
-    <div class="form ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.85s">
-      <p class="item">
-        <label for="">姓名：</label>
-        <input type="text" v-model="name">
-      </p>
-      <p class="item">
-        <label for="">手机：</label>
-        <input type="text" v-model="mobile">
-      </p>
-      <p class="item">
-        <label for="">单位：</label>
-        <input type="text" v-model="company">
-      </p>
-      <p class="item">
-        <label for="">职务：</label>
-        <input type="text" v-model="position">
-      </p>
+    <div v-if="!userInfo">
+      <div class="form ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.85s">
+        <p class="item">
+          <label for="">姓名：</label>
+          <input type="text" v-model="userName">
+        </p>
+        <p class="item">
+          <label for="">手机：</label>
+          <input type="text" v-model="mobile">
+        </p>
+        <p class="item">
+          <label for="">单位：</label>
+          <input type="text" v-model="company">
+        </p>
+        <p class="item">
+          <label for="">职务：</label>
+          <input type="text" v-model="position">
+        </p>
+      </div>
+      <button class="btn ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1.25s" @click="postData">提交</button>
     </div>
-    <button class="btn ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1.25s" @click="postData">提交</button>
+    <user-info v-else :userInfo="userInfo"></user-info>
+    <simplert :useRadius="true" :useIcon="true" ref="simplert">
+    </simplert>
   </div>
 </template>
 
@@ -34,20 +39,34 @@
 import { WeChat } from 'weChat/util'
 const weChat = new WeChat()
 import weui from 'weui.js'
-import { signUp } from 'api/index'
+import { signUp, getUserInfo } from 'api/index'
+
+import Simplert from 'vue2-simplert'
+import UserInfo from 'base/UserInfo/index'
 export default {
   name:'signUp',
+  components:{
+    Simplert,
+    UserInfo
+  },
   data() {
     return {
-      name:'',
+      userName:'',
       mobile:'',
       company:'',
-      position:''
+      position:'',
+      isSingUp:true,
+      userInfo:null
     }
+  },
+  mounted() {
+    this._getUserInfo()
+    // weui.alert('普通的confirm');
+    this._successTips()
   },
   methods:{
     postData() {
-      if(!this.name){
+      if(!this.userName){
         weui.topTips('请填写您的姓名！')
         return
       }
@@ -69,12 +88,40 @@ export default {
       }
       let userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
 
-      signUp(userInfo.openId,this,name,this.mobile,this.company,this.position).then(res => {
-
+      signUp(userInfo.openid,this.userName,this.mobile,this.company,this.position).then(res => {
+        this._successTips()
       }).catch(err => {
         console.log(err)
         weui.alert('error')
       })
+    },
+    _successTips() {
+      let obj = {
+        title: '报名成功',
+        type: 'success',
+        onClose: this.onClose,
+        customCloseBtnText:'关闭'
+      }
+      this.$refs.simplert.openSimplert(obj)
+    },
+    _getUserInfo() {
+      let userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'));
+      getUserInfo(userInfo.openid).then(res => {
+        let { status,data } = res.data
+        if(status === 'ok') {
+          this.userInfo = data
+        }
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    _clearIpt() {
+      setTimeout(() => {
+        this.userName = ''
+        this.mobile = ''
+        this.company = ''
+        this.position = ''
+      },200)
     },
     _checkPhone(phone) {
       if(!(/^1[345678]\d{9}$/.test(phone))){

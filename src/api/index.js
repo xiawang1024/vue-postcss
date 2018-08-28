@@ -1,8 +1,9 @@
 import axios from 'axios';
 import Qs from 'qs';
+axios.defaults.baseURL = 'http://a.weixin.hndt.com/boom';
 const voteFetch = (id, openId, code, title) =>
 	axios.post(
-		'https://a.weixin.hndt.com/boom/api/battle/entrevoteadd',
+		'/api/battle/entrevoteadd',
 		Qs.stringify({
 			id,
 			openId,
@@ -10,11 +11,19 @@ const voteFetch = (id, openId, code, title) =>
 			title
 		})
 	);
-const voteNumFetch = () => axios.get('https://a.weixin.hndt.com/boom/api/battle/entrevoteshowlist');
-
+const voteNumFetch = () => axios.get('/api/battle/entrevoteshowlist');
+/**
+ * 报名
+ * @param {*} openId
+ * @param {*} name
+ * @param {*} mobile
+ * @param {*} company
+ * @param {*} position
+ * @param {*} signId
+ */
 const signUp = (openId, name, mobile, company, position, signId = 3) =>
 	axios.post(
-		'http://a.weixin.hndt.com/boom/openapi/sign/add',
+		'/openapi/sign/add',
 		Qs.stringify({
 			openId,
 			name,
@@ -24,4 +33,17 @@ const signUp = (openId, name, mobile, company, position, signId = 3) =>
 			signId
 		})
 	);
-export { voteFetch, voteNumFetch, signUp };
+/**
+ * 获取用户报名信息
+ * @param {*} openId
+ * @param {*} signId
+ */
+const getUserInfo = (openId, signId = 3) =>
+	axios.post(
+		'/openapi/sign/info',
+		Qs.stringify({
+			openId,
+			signId
+		})
+	);
+export { voteFetch, voteNumFetch, signUp, getUserInfo };

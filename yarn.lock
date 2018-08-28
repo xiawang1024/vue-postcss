@@ -6840,6 +6840,16 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "http://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
 
+vue2-simplert-core@1.0.3:
+  version "1.0.3"
+  resolved "http://registry.npm.taobao.org/vue2-simplert-core/download/vue2-simplert-core-1.0.3.tgz#dc1a7ea2a54472b68414e6af65782a62ebdeb21b"
+
+vue2-simplert@^0.8.0:
+  version "0.8.0"
+  resolved "http://registry.npm.taobao.org/vue2-simplert/download/vue2-simplert-0.8.0.tgz#dcb9838a25f062bedf3ae20f831f154790fa1876"
+  dependencies:
+    vue2-simplert-core "1.0.3"
+
 vue@^2.2.6, vue@^2.5.2:
   version "2.5.17"
   resolved "http://registry.npm.taobao.org/vue/download/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
