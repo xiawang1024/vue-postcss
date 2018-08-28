@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Qs from 'qs';
-axios.defaults.baseURL = 'http://a.weixin.hndt.com/boom';
+axios.defaults.baseURL = 'https://a.weixin.hndt.com/boom';
 const voteFetch = (id, openId, code, title) =>
 	axios.post(
 		'/api/battle/entrevoteadd',
