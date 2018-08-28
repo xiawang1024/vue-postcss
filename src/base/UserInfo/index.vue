@@ -36,6 +36,7 @@ export default {
   box-sizing: border-box;
   .title{
     font-size: 36px;
+    color:#000;
   }
   .wrap{
     margin-top: 40px;

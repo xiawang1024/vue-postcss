@@ -60,9 +60,8 @@ export default {
     }
   },
   mounted() {
+    // this._successTips()
     this._getUserInfo()
-    // weui.alert('普通的confirm');
-    this._successTips()
   },
   methods:{
     postData() {
@@ -89,17 +88,25 @@ export default {
       let userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
 
       signUp(userInfo.openid,this.userName,this.mobile,this.company,this.position).then(res => {
-        this._successTips()
+        let { status } = res.data
+        if(status === 'ok') {
+          this._successTips()
+        }else {
+          alert('报名失败，请重试！')
+        }
       }).catch(err => {
         console.log(err)
-        weui.alert('error')
+        alert('网络错误！请重试')
       })
+    },
+    _onClose() {
+      this._clearIpt()
     },
     _successTips() {
       let obj = {
         title: '报名成功',
         type: 'success',
-        onClose: this.onClose,
+        onClose: this._onClose,
         customCloseBtnText:'关闭'
       }
       this.$refs.simplert.openSimplert(obj)
@@ -110,18 +117,25 @@ export default {
         let { status,data } = res.data
         if(status === 'ok') {
           this.userInfo = data
+        }else {
+          this.userInfo = null;
         }
       }).catch(error => {
         console.log(error)
       })
     },
     _clearIpt() {
+      let obj = {name:this.userName,mobile:this.mobile,company:this.company,position:this.position}
+
+      this.$nextTick(() => {
+        this.userInfo = obj
+      })
       setTimeout(() => {
         this.userName = ''
         this.mobile = ''
         this.company = ''
         this.position = ''
-      },200)
+      },500)
     },
     _checkPhone(phone) {
       if(!(/^1[345678]\d{9}$/.test(phone))){
