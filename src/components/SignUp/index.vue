@@ -92,7 +92,7 @@ export default {
   width: 100%;
   height: 100%;
   text-align: center;
-  background:url('../../common/imgs/star.png') center center no-repeat #020c32;
+  background:url('../../common/imgs/star.png') center center no-repeat ;
   background-size: contain;
   .top{
     position: relative;
