@@ -1,5 +1,4 @@
 import wx from 'weixin-js-sdk';
-import weui from 'weui.js';
 import axios from 'axios';
 import Qs from 'qs';
 import { appId, shareLink, shareTitle, shareDesc, shareImg } from './config';
