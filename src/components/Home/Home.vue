@@ -1,50 +1,18 @@
 <template>
   <div class="home">
-    <swiper :options="swiperOption">
-      <swiper-slide>
-        <one></one>
-      </swiper-slide>
-      <swiper-slide>
-        <sign-up></sign-up>
-      </swiper-slide>
-      <swiper-slide>
-        <end></end>
-      </swiper-slide>
-    </swiper>
+    <sign-in></sign-in>
   </div>
 </template>
 
 <script>
-const { swiperAnimateCache, swiperAnimate } = require('common/js/animate.js')
-
-import One from '../One/index'
-import SignUp from '../SignUp/index'
-import End from '../End/index'
+import SignIn from '../SignIn/index'
 
 export default {
   components: {
-    One,
-    SignUp,
-    End
+    SignIn
   },
   data() {
     return {
-      swiperOption: {
-				direction : 'vertical',
-				loop : true,
-				// pagination: {
-				// 	el: '.swiper-pagination'
-				// },
-				on:{
-					init(){
-						swiperAnimateCache(this); //隐藏动画元素
-						swiperAnimate(this); //初始化完成开始动画
-					},
-					slideChangeTransitionEnd(){
-						swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
-					}
-				}
-			}
     }
   }
 }

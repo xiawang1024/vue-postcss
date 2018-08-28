@@ -34,6 +34,12 @@ const signUp = (openId, name, mobile, company, position, signId = 3) =>
 		})
 	);
 /**
+ * 签到
+ * @param {*} openId
+ * @param {*} signIn
+ */
+const signIn = (openId, signId = 3) => axios.post('/openapi/sign/in', Qs.stringify({ openId, signId }));
+/**
  * 获取用户报名信息
  * @param {*} openId
  * @param {*} signId
@@ -46,4 +52,4 @@ const getUserInfo = (openId, signId = 3) =>
 			signId
 		})
 	);
-export { voteFetch, voteNumFetch, signUp, getUserInfo };
+export { voteFetch, voteNumFetch, signUp, signIn, getUserInfo };

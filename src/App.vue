@@ -2,28 +2,22 @@
   <div id="app">
     <vue-particles color="#dedede" class="particles" :moveSpeed="5"></vue-particles>
     <home></home>
-    <up-arrow></up-arrow>
-    <wx-audio></wx-audio>
   </div>
 </template>
 
 <script>
 import Home from 'comp/Home/Home'
-import UpArrow from 'base/UpArrow/index'
-import WxAudio from 'base/Audio/index'
 
 export default {
   name: 'App',
   components:{
-    Home,
-    UpArrow,
-    WxAudio
+    Home
   }
 }
 </script>
 <style lang="scss" scoped>
 #app {
-  position: absolute;
+  position: fixed;
   top:0;
   bottom:0;
   left:0;

@@ -63,7 +63,7 @@ class WeChat {
 				let data = res.data;
 				if (data.status == 'ok') {
 					this.setStorage('WXHNDTOPENID', JSON.stringify(data.data));
-					BUS.$emit('getUserInfo');
+					BUS.$emit('SignIn', data.data);
 				} else {
 					this.redirectUrl();
 				}
