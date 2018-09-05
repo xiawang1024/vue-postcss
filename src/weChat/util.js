@@ -127,7 +127,58 @@ class WeChatConf extends WeChat {
 					success: function() {},
 					cancel: function() {}
 				});
+				wx.onVoiceRecordEnd({
+					// 录音时间超过一分钟没有停止的时候会执行 complete 回调
+					complete: (res) => {
+						const localId = res.localId;
+						wx.playVoice({
+							localId: localId // 需要播放的音频的本地ID，由stopRecord接口获得
+						});
+						weui.confirm('确定发送', {
+							buttons: [
+								{
+									label: '返回',
+									type: 'default',
+									onClick: () => {
+										console.log('no');
+									}
+								},
+								{
+									label: '确定',
+									type: 'primary',
+									onClick: () => {
+										this.uploadVoice(localId);
+									}
+								}
+							]
+						});
+					}
+				});
 			});
+		});
+	}
+	uploadVoice(voiceLocalId) {
+		wx.uploadVoice({
+			localId: voiceLocalId, // 需要上传的音频的本地ID，由stopRecord接口获得
+			isShowProgressTips: 1, // 默认为1，显示进度提示
+			success: (res) => {
+				var userInfo = weChat.getStorage('WXHNDTOPENID');
+				var openId = JSON.parse(userInfo).openid;
+				var songName = $('#selectSong').html();
+				//把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
+				$.ajax({
+					url: 'https://a.weixin.hndt.com/boom/api/wx/radio/download',
+					type: 'get',
+					data: { mediaId: res.serverId, openId: openId, name: songName },
+					dataType: 'json',
+					success: function(data) {
+						weui.toast('上传成功！');
+					},
+					error: function(xhr, errorType, error) {
+						console.log(error);
+					}
+				});
+			}
 		});
 	}
 }

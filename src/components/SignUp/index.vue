@@ -69,6 +69,8 @@ export default {
         this._getUserInfo()
       },300)
     })
+    this.startId = 0;
+    this.endId = 0;
   },
   methods:{
     postData() {
@@ -168,6 +170,94 @@ export default {
           return true
       }
     },
+    touchStart() {
+      this.startId = Date.parse(new Date())
+      this.recordTimer = setTimeout(() => {
+        wx.startRecord({
+          success: () => {
+            localStorage.rainAllowRecord = 'true';
+          },
+          cancel: () => {
+            alert('用户拒绝授权录音');
+          }
+        });
+      })
+    },
+    touchEnd() {
+      this.endId = Date.parse(new Date())
+      if(this.endId - this.startId < 2000) {
+        this.startId = this.endId = 0
+        alert('时间过短，请重新录制！')
+        clearTimeout(this.recordTimer)
+        return
+      }else {
+        wx.stopRecord({
+          success: (res) => {
+            let { voiceLocalId } = res.localId;
+            wx.playVoice({
+              localId: voiceLocalId // 需要播放的音频的本地ID，由stopRecord接口获得
+            });
+
+            weui.confirm('回听已录制的歌曲', {
+              buttons: [
+                {
+                  label: '重新录制',
+                  type: 'default',
+                  onClick: () => {
+                    console.log('no');
+                  }
+                },
+                {
+                  label: '确定上传',
+                  type: 'primary',
+                  onClick: () => {
+                    this._uploadVoice(voiceLocalId);
+                  }
+                }
+              ]
+            });
+          },
+          fail: (res) => {
+            console.log(JSON.stringify(res));
+          }
+        });
+      }
+    },
+    _uploadVoice(voiceLocalId) {
+      wx.uploadVoice({
+        localId: voiceLocalId, // 需要上传的音频的本地ID，由stopRecord接口获得
+        isShowProgressTips: 1, // 默认为1，显示进度提示
+        success: (res) => {
+          var userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'));
+
+          var openId = userInfo.openid;
+          var username = userInfo.nickname || '';
+          var icon = userInfo.headimgurl || '';
+          var songName = $('#selectSong').html();
+          var origin = weChat.getQueryString('cid') || '';
+          //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
+          $.ajax({
+            url: 'https://a.weixin.hndt.com/boom/api/wx/radio/download',
+            type: 'get',
+            data: {
+              mediaId: res.serverId,
+              openId: openId,
+              name: songName,
+              username: username,
+              icon: icon,
+              origin: origin
+            },
+            dataType: 'json',
+            success: (data) => {
+              weui.toast('上传成功！');
+            },
+            error: (xhr, errorType, error) => {
+              console.log(error);
+            }
+          });
+        }
+      });
+    }
   }
 }
 </script>
