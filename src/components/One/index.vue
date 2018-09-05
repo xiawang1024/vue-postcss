@@ -1,21 +1,21 @@
 <template>
   <div class="one">
-    <div class="logo"></div>
+    <div class="logo ani" swiper-animate-effect="rotateIn" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
     <div class="moon-wrap">
-      <div class="light"></div>
-      <div class="moon"></div>
+      <div class="light ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s"></div>
+      <div class="moon ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
     </div>
-    <div class="flower"></div>
-    <div class="bird"></div>
-    <div class="leaf"></div>
-    <div class="cloud"></div>
-    <div class="title"></div>
+    <div class="flower ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="1s" swiper-animate-delay="0.25s"></div>
+    <div class="bird ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s"></div>
+    <div class="leaf ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.75s"></div>
+    <div class="cloud ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="1s"></div>
+    <div class="title ani" swiper-animate-effect="bounceIn" swiper-animate-duration="1s" swiper-animate-delay="1s"></div>
     <div class="text-wrap">
-      <div class="name"></div>
-      <div class="namec"></div>
-      <div class="text1"></div>
-      <div class="text2"></div>
-      <div class="text3"></div>
+      <div class="name ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="0.75s"></div>
+      <div class="namec ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1s"></div>
+      <div class="text1 ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1.25s"></div>
+      <div class="text2 ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1.5s"></div>
+      <div class="text3 ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1.75s"></div>
     </div>
     <div class="bottom"></div>
   </div>

@@ -31,7 +31,7 @@ export default {
     return {
       swiperOption: {
 				direction : 'vertical',
-				loop : true,
+				// loop : true,
 				// pagination: {
 				// 	el: '.swiper-pagination'
 				// },

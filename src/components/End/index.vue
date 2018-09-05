@@ -1,16 +1,38 @@
 <template>
   <div class="end">
-    <div class="top">
-      <div class="logo ani" swiper-animate-effect="flip" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
-      <div class="text ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0s">2018年广播融媒体技术专业委员会年会</div>
-      <div class="img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
+    <div class="one">
+      <div class="logo ani" swiper-animate-effect="rotateIn" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
+      <!-- <img class="qrcode" src="../../common/imgs/qrcode.jpg" /> -->
+      <div class="moon-wrap">
+        <div class="light ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s"></div>
+        <div class="moon ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
+      </div>
+      <div class="flower ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="1s" swiper-animate-delay="0.25s"></div>
+      <div class="bird ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s"></div>
+      <div class="leaf ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.75s"></div>
+      <div class="cloud ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="1s"></div>
+      <!-- <div class="title"></div> -->
+      <div class="text-wrap ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1s">
+        <!-- <div class="item">
+          <span class="label">姓名</span>
+          <input type="text" class="ipt">
+        </div>
+        <div class="item">
+          <span class="label">电话</span>
+          <input type="text" class="ipt">
+        </div>
+        <div class="item">
+          <span class="label"></span>
+          <div class="ipt btn">
+            <p class="tips">收听给你的语音</p>
+            <button class="submit">录音</button>
+          </div>
+        </div> -->
+        <img class="qrcode" src="../../common/imgs/qrcode.jpg" alt="">
+        <p class="tips">河南广播电视台音乐广播</p>
+      </div>
+      <div class="bottom">河南广播云提供技术支持</div>
     </div>
-    <div class="title ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
-
-    </div>
-    <div class="map ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0.85s"></div>
-    <button class="btn ani" @click="go" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1.35s">去导航</button>
-    <div class="bottom ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="1.5s"></div>
   </div>
 </template>
 
@@ -34,83 +56,113 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.end{
+.one{
   width: 100%;
   height: 100%;
   text-align: center;
-  // background:url('../../common/imgs/star.png') center center no-repeat ;
-  background-size: contain;
-  .top{
+  background:url('../../common/imgs/bg.png');
+  background-position: top 60px center,top 290px center;
+  background-repeat: no-repeat,no-repeat;
+  background-size:100% auto,auto 583px;
+  .logo{
+    position: absolute;
+    top:40px;
+    left:40px;
+    width:96px;
+    height: 96px;
+    background: url('../../common/imgs/logo.png') center center no-repeat;
+    background-size: cover;
+  }
+
+  .moon-wrap{
     position: relative;
-    width: 100%;
-    height: 165px;
-    .logo{
-      position: absolute;
-      top:40px;
-      left: 35px;
-      width: 80px;
-      height: 64px;
-      // background: url('../../common/imgs/logo.png') center center no-repeat;
-      background-size:cover;
+    .light{
+      width: 100%;
+      height: 603px;
+      background: url('../../common/imgs/light.png') center center no-repeat;
+      background-size: contain;
     }
-    .text{
-      // position: absolute;
-      padding-top: 57px;
-      font-size: 23px;
-      color:#fff;
-    }
-    .img{
+    .moon{
       position: absolute;
       top:0;
-      right:0;
-      width: 423px;
-      height: 165px;
-      // background:url('../../common/imgs/top.png') center center no-repeat;
+      right: 0;
+      width: 357px;
+      height: 374px;
+      background: url('../../common/imgs/moon.png') center center no-repeat;
       background-size: cover;
     }
   }
+  .flower{
+    position: absolute;
+    top :86px;
+    left:0;
+    width: 338px;
+    height: 509px;
+    background: url('../../common/imgs/flower.png') center center no-repeat;
+    background-size: cover;
+  }
+  .bird{
+    position: absolute;
+    top:25px;
+    left: 364px;
+    width: 83px;
+    height: 82px;
+    background: url('../../common/imgs/bird.png') center center no-repeat;
+    background-size: cover;
+  }
+  .leaf{
+    position: absolute;
+    top:66px;
+    left: 420px;
+    width: 188px;
+    height: 317px;
+    background: url('../../common/imgs/leaf.png') center center no-repeat;
+    background-size: cover;
+  }
+  .cloud{
+    position: absolute;
+    top:120px;
+    right: 0;
+    width: 724px;
+    height: 759px;
+    background: url('../../common/imgs/cloud.png') center center no-repeat;
+    background-size: cover;
+  }
   .title{
-    margin-top: 20px;
+    position: absolute;
+    top:338px;
+    left: 0;
     width: 100%;
-    height: 220px;
-    // background: url('../../common/imgs/title.png') center center no-repeat;
+    height: 115px;
+    background: url('../../common/imgs/title2.png') center center no-repeat;
     background-size: contain;
   }
-  .map{
-    position: relative;
-    z-index: 1024;
-    margin-top: 40px;
-    width: 100%;
-    height: 460px;
-    // background: url('../../common/imgs/map.png') center center no-repeat;
-    background-size: contain;
-  }
-  .btn{
-    position: relative;
-    z-index: 1024;
-    margin-top: 50px;
-    width: 250px;
-    height: 70px;
-    border:none;
-    border-radius: 70px;
-    outline: none;
-    font-size: 32px;
-    color:#0081dc;
-    background:#fff;
-    user-select: none;
-    &:active{
-      background:rgba(255,255,255,0.5);
+  .text-wrap{
+    position: absolute;
+    top:400px;
+    left:135px;
+    width: 480px;
+    color:#fff;
+    text-align: center;
+    .qrcode{
+      width: 300px;
+      height: 300px;
+    }
+    .tips{
+      margin-top: 20px;
+      font-size: 30px;
     }
   }
   .bottom{
     position: absolute;
-    bottom:0;
+    bottom: 0;
     left:0;
-    right: 0;
     width: 100%;
-    height: 239px;
-    // background: url('../../common/imgs/bottom.png') center center no-repeat;
-    background-size: cover;
+    height: 170px;
+    font-size: 28px;
+    color:#888;
+    background: url('../../common/imgs/bottom.png') center center no-repeat;
+    background-size: contain;
   }
 }
 </style>

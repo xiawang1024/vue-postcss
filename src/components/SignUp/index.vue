@@ -1,35 +1,46 @@
 <template>
   <div class="signUp">
-    <div class="top">
-      <div class="logo ani" swiper-animate-effect="flip" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
-      <div class="text ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0s">2018年广播融媒体技术专业委员会年会</div>
-      <div class="img ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
-    </div>
-    <div class="title ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
-
-    </div>
-    <div v-if="!userInfo">
-      <div class="form ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.85s">
-        <p class="item">
-          <label for="">姓名：</label>
-          <input type="text" v-model="userName">
-        </p>
-        <p class="item">
-          <label for="">手机：</label>
-          <input type="text" v-model="mobile">
-        </p>
-        <p class="item">
-          <label for="">单位：</label>
-          <input type="text" v-model="company">
-        </p>
-        <p class="item">
-          <label for="">职务：</label>
-          <input type="text" v-model="position">
-        </p>
+    <div class="one">
+      <div class="logo ani" swiper-animate-effect="rotateIn" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
+      <!-- <img class="qrcode" src="../../common/imgs/qrcode.png" /> -->
+      <div class="moon-wrap">
+        <div class="light ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s"></div>
+        <div class="moon ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
       </div>
-      <button class="btn ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1.25s" @click="postData">提交</button>
+      <div class="flower ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="1s" swiper-animate-delay="0.25s"></div>
+      <div class="bird ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s"></div>
+      <div class="leaf ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.75s"></div>
+      <div class="cloud ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="1s"></div>
+      <div class="title ani" swiper-animate-effect="bounceIn" swiper-animate-duration="1s" swiper-animate-delay="0.75s"></div>
+      <div class="text-wrap ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1s">
+        <p class="name">送祝福的人</p>
+        <div class="item">
+          <span class="label">姓名</span>
+          <input type="text" class="ipt">
+        </div>
+        <div class="item">
+          <span class="label">电话</span>
+          <input type="text" class="ipt">
+        </div>
+        <p class="name">收祝福的人</p>
+        <div class="item">
+          <span class="label">姓名</span>
+          <input type="text" class="ipt">
+        </div>
+        <div class="item">
+          <span class="label">电话</span>
+          <input type="text" class="ipt">
+        </div>
+        <div class="item">
+          <span class="label"></span>
+          <div class="ipt btn">
+            <p class="tips">录下想说的话</p>
+            <button class="submit">录音</button>
+          </div>
+        </div>
+      </div>
+      <div class="bottom"></div>
     </div>
-    <user-info v-else :userInfo="userInfo"></user-info>
     <simplert :useRadius="true" :useIcon="true" ref="simplert">
     </simplert>
   </div>
@@ -263,86 +274,160 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.signUp{
+.one{
   width: 100%;
   height: 100%;
   text-align: center;
-  // background:url('../../common/imgs/star.png') center center no-repeat ;
-  background-size: contain;
-  .top{
+  background:url('../../common/imgs/bg.png');
+  background-position: top 60px center,top 290px center;
+  background-repeat: no-repeat,no-repeat;
+  background-size:100% auto,auto 583px;
+  .logo{
+    position: absolute;
+    top:40px;
+    left:40px;
+    width:96px;
+    height: 96px;
+    background: url('../../common/imgs/logo.png') center center no-repeat;
+    background-size: cover;
+  }
+  .qrcode{
+    position: absolute;
+    z-index: 10;
+    bottom:60px;
+    right: 40px;
+    width: 120px;
+    height: 120px;
+  }
+  .moon-wrap{
     position: relative;
-    width: 100%;
-    height: 165px;
-    text-align: center;
-    .logo{
-      position: absolute;
-      top:40px;
-      left: 35px;
-      width: 80px;
-      height: 64px;
-      // background: url('../../common/imgs/logo.png') center center no-repeat;
-      background-size:cover;
+    .light{
+      width: 100%;
+      height: 603px;
+      background: url('../../common/imgs/light.png') center center no-repeat;
+      background-size: contain;
     }
-    .text{
-      // position: absolute;
-      padding-top: 57px;
-      font-size: 23px;
-      color:#fff;
-    }
-    .img{
+    .moon{
       position: absolute;
       top:0;
-      right:0;
-      width: 423px;
-      height: 165px;
-      // background:url('../../common/imgs/top.png') center center no-repeat;
+      right: 0;
+      width: 357px;
+      height: 374px;
+      background: url('../../common/imgs/moon.png') center center no-repeat;
       background-size: cover;
     }
   }
-  .title{
-    margin-top: 40px;
-    width: 100%;
-    height: 220px;
-    // background: url('../../common/imgs/title.png') center center no-repeat;
+  .flower{
+    position: absolute;
+    top:0px;
+    left:0;
+    width: 250px;
+    height: 509px;
+    background: url('../../common/imgs/flower.png') left center no-repeat;
     background-size: contain;
   }
-  .form{
-    width: 515px;
-    margin:60px auto 0;
+  .bird{
+    position: absolute;
+    top:25px;
+    left: 364px;
+    width: 83px;
+    height: 82px;
+    background: url('../../common/imgs/bird.png') center center no-repeat;
+    background-size: cover;
+  }
+  .leaf{
+    position: absolute;
+    top:66px;
+    left: 420px;
+    width: 188px;
+    height: 317px;
+    background: url('../../common/imgs/leaf.png') center center no-repeat;
+    background-size: cover;
+  }
+  .cloud{
+    position: absolute;
+    top:120px;
+    right: 0;
+    width: 724px;
+    height: 759px;
+    background: url('../../common/imgs/cloud.png') center center no-repeat;
+    background-size: cover;
+  }
+  .title{
+    position: absolute;
+    top:180px;
+    left: 0;
+    width: 100%;
+    height: 126px;
+    background: url('../../common/imgs/title1.png') center center no-repeat;
+    background-size: contain;
+  }
+  .text-wrap{
+    position: absolute;
+    top:360px;
+    left:90px;
+    width: 480px;
+    color:#fff;
+    .name{
+      margin-left: 90px;
+      margin-bottom: 20px;
+      color:#f08;
+      font-size: 28px;
+    }
     .item{
       display: flex;
       align-items: center;
+      width: 100%;
+      height: 65px;
       margin-bottom: 40px;
-      padding-bottom: 8px;
-      font-size: 32px;
-      border-bottom:1px solid #fff;
-      label{
-        flex:0 0 100px;
-        width: 100px;
-        color:#bbb;
+      box-sizing: border-box;
+      .label{
+        width: 105px;
+        flex: 0 0 105px;
+        font-size: 28px;
       }
-      input{
-        background: none;
-        border:none;
+      .ipt{
+        flex:1;
+        height: 100%;
+        padding-left: 16px;
+        border: 1px solid #fff;
+        border-radius: 8px;
         outline: none;
         color:#fff;
+        background: none;
+        box-sizing: border-box;
+        appearance: none;
+        font-size: 28px;
+        &.btn{
+          border:none;
+          .tips{
+            width: 100%;
+            font-size: 22px;
+            color: #ccc;
+            text-align: center;
+          }
+          .submit{
+            margin-top: 30px;
+            width: 100%;
+            height:90px;
+            border-radius: 90px;
+            border:none;
+            font-size: 28px;
+            color: #fff;
+            background:#395bbb;
+          }
+        }
       }
     }
   }
-  .btn{
-    margin-top: 50px;
-    width: 250px;
-    height: 70px;
-    border:none;
-    border-radius: 70px;
-    outline: none;
-    font-size: 32px;
-    color:#0081dc;
-    background:#fff;
-    user-select: none;
-    &:active{
-      background:rgba(255,255,255,0.5);
-    }
+  .bottom{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    height: 170px;
+    background: url('../../common/imgs/bottom.png') center center no-repeat;
+    background-size: contain;
   }
 }
 </style>
