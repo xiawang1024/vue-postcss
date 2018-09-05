@@ -38,7 +38,7 @@ export default {
   width: 100%;
   height: 100%;
   text-align: center;
-  background:url('../../common/imgs/star.png') center center no-repeat ;
+  // background:url('../../common/imgs/star.png') center center no-repeat ;
   background-size: contain;
   .top{
     position: relative;
@@ -50,7 +50,7 @@ export default {
       left: 35px;
       width: 80px;
       height: 64px;
-      background: url('../../common/imgs/logo.png') center center no-repeat;
+      // background: url('../../common/imgs/logo.png') center center no-repeat;
       background-size:cover;
     }
     .text{
@@ -65,7 +65,7 @@ export default {
       right:0;
       width: 423px;
       height: 165px;
-      background:url('../../common/imgs/top.png') center center no-repeat;
+      // background:url('../../common/imgs/top.png') center center no-repeat;
       background-size: cover;
     }
   }
@@ -73,7 +73,7 @@ export default {
     margin-top: 20px;
     width: 100%;
     height: 220px;
-    background: url('../../common/imgs/title.png') center center no-repeat;
+    // background: url('../../common/imgs/title.png') center center no-repeat;
     background-size: contain;
   }
   .map{
@@ -82,7 +82,7 @@ export default {
     margin-top: 40px;
     width: 100%;
     height: 460px;
-    background: url('../../common/imgs/map.png') center center no-repeat;
+    // background: url('../../common/imgs/map.png') center center no-repeat;
     background-size: contain;
   }
   .btn{
@@ -109,7 +109,7 @@ export default {
     right: 0;
     width: 100%;
     height: 239px;
-    background: url('../../common/imgs/bottom.png') center center no-repeat;
+    // background: url('../../common/imgs/bottom.png') center center no-repeat;
     background-size: cover;
   }
 }

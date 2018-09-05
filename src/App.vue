@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-particles color="#dedede" class="particles" :moveSpeed="5"></vue-particles>
+    <vue-particles color="#f08" class="particles" :moveSpeed="2"></vue-particles>
     <home></home>
     <up-arrow></up-arrow>
     <wx-audio></wx-audio>
@@ -34,7 +34,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  background: #020c32;
+  background: #141a48;
   overflow: hidden;
   .particles{
     height: 100%;
