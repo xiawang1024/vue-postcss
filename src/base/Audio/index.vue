@@ -1,6 +1,6 @@
 <template>
   <div class="audio-wrap music" :class="noMusic ? 'no-music' : ''" @click="pauseAudio">
-    <audio id="audio" autoplay loop width="0" height="0" src="http://www.hndt.com/h5/show/show.mp3"></audio>
+    <audio id="audio" autoplay loop width="0" height="0" src="https://a.weixin.hndt.com/h5/881/20180905/881.mp3"></audio>
   </div>
 </template>
 
@@ -55,7 +55,7 @@ export default {
   top: 30px;
   width: 60px;
   height: 60px;
-  background: url('./music.png') center center no-repeat;
+  background: url('./music-black.png') center center no-repeat;
   background-size: cover;
 
   &.no-music {
