@@ -19,7 +19,7 @@
         </div>
         <div class="item">
           <span class="label">电话</span>
-          <input type="text" class="ipt" v-model="mobile">
+          <input type="tel" class="ipt" v-model="mobile">
         </div>
         <div class="item">
           <span class="label"></span>
@@ -34,7 +34,7 @@
       <div class="logo-text">魅力881河南广播电视台音乐广播</div>
       <div class="bottom"></div>
     </div>
-    <audio src="" id="voice" style="display:none" @play='voicePlay' @pause='voicePause'></audio>
+    <audio src="https://a.weixin.hndt.com/boom/uploads/voice/2018/9/6/bd7b8efa2cab4a6a972a13ab8ceda5fb.mp3" id="voice" style="display:none" @play='voicePlay' @pause='voicePause'></audio>
     <div class="voice" v-show='isPlay'>
       <img src="../../common/imgs/voice-recording.gif" alt="" class="img">
       <p class="tips">正在播放...</p>
@@ -65,6 +65,7 @@ export default {
   methods:{
 
     fetchDownVoice() {
+
       if(!this.userName){
         this._warnTips('请填写您的姓名')
         return
@@ -79,6 +80,7 @@ export default {
       }
       downVoice(this.userName,this.mobile).then((res) => {
         let {data,status} = res.data
+
         if(status === 'ok'){
           let src = data.files
           this.playVoice(src)
@@ -110,6 +112,18 @@ export default {
       }
       this.$refs.simplert.openSimplert(obj)
     },
+    _successTips() {
+      const voicePlay = () => {
+        this.voice.play()
+      }
+      let obj = {
+        title: '播放给你的语音',
+        type: 'success',
+        onClose: voicePlay,
+        customCloseBtnText:'播放'
+      }
+      this.$refs.simplert.openSimplert(obj)
+    },
     voicePlay() {
       this.isPlay = true
     },
@@ -118,8 +132,9 @@ export default {
     },
     playVoice(voiceSrc) {
       let src = `https://a.weixin.hndt.com/boom${voiceSrc}`
+
       this.voice.setAttribute('src',src)
-      this.voice.play()
+      this._successTips()
     }
   }
 }
@@ -216,7 +231,7 @@ export default {
   }
   .text-wrap{
     position: absolute;
-    top:500px;
+    top:480px;
     left:90px;
     width: 480px;
     color:#fff;

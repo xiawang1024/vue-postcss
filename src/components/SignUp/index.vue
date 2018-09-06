@@ -20,7 +20,7 @@
         </div>
         <div class="item">
           <span class="label">电话</span>
-          <input type="text" class="ipt" v-model="mobile">
+          <input type="tel" class="ipt" v-model="mobile">
         </div>
 
         <div class="item">
@@ -76,6 +76,9 @@ export default {
     })
     this.startId = 0;
     this.endId = 0;
+  },
+  beforeDestroy() {
+    clearTimeout(this.timeId)
   },
   methods:{
     _onClose() {
@@ -185,17 +188,19 @@ export default {
       let isOkRecord = this._checkIpt()
       if(isOkRecord) {
         this.startId = Date.parse(new Date())
-        this._isRecord()
-        this.recordTimer = setTimeout(() => {
-          wx.startRecord({
-            success: () => {
-              localStorage.rainAllowRecord = 'true';
-            },
-            cancel: () => {
-              alert('用户拒绝授权录音');
-            }
-          });
-        })
+        this.timeId = setTimeout(() => {
+          this._isRecord()
+          this.recordTimer = setTimeout(() => {
+            wx.startRecord({
+              success: () => {
+                localStorage.rainAllowRecord = 'true';
+              },
+              cancel: () => {
+                alert('用户拒绝授权录音');
+              }
+            });
+          })
+        },1500)
       }else {
         return
       }
@@ -347,7 +352,7 @@ export default {
   }
   .text-wrap{
     position: absolute;
-    top:500px;
+    top:480px;
     left:90px;
     width: 480px;
     color:#fff;
