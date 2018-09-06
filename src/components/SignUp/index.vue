@@ -64,7 +64,7 @@ export default {
     return {
       userName:'',
       mobile:'',
-      btnInfo:'录音',
+      btnInfo:'长按录音',
       isRecord:false,
       userInfo:null
     }
@@ -177,7 +177,7 @@ export default {
       this.isRecord = true
     },
     _isNotRecord() {
-      this.btnInfo = '录音'
+      this.btnInfo = '长按录音'
       this.isRecord = false
     },
     touchStart() {
@@ -201,30 +201,40 @@ export default {
       }
     },
     touchEnd() {
-      this.endId = Date.parse(new Date())
-      this._isNotRecord()
-      let _this = this
-      if(this.endId - this.startId < 2000 && this.endId - this.startId > 300) {
-        this.startId = this.endId = 0
-        alert('时间过短，请重新录制！')
-        clearTimeout(this.recordTimer)
-        return
-      }else {
-        wx.stopRecord({
-          success: (res) => {
-            let  voiceLocalId  = res.localId;
-            _this.voiceLocalId = voiceLocalId
-            wx.playVoice({
-              localId: voiceLocalId // 需要播放的音频的本地ID，由stopRecord接口获得
-            });
-            _this._voiceTips()
+      let isOkRecord = this._checkIpt()
+      if(isOkRecord) {
+        this.endId = Date.parse(new Date())
+        this._isNotRecord()
+        let _this = this
+        console.log('------------------------------------');
+        console.log(this.endId);
+        console.log(this.startId);
+        if(this.endId - this.startId < 2000 ) {
+          this.startId = this.endId = 0
+          alert('时间过短，请重新录制！')
+          clearTimeout(this.recordTimer)
+          return
+        }else {
+          console.log('end')
+          wx.stopRecord({
+            success: (res) => {
+              let  voiceLocalId  = res.localId;
+              _this.voiceLocalId = voiceLocalId
+              wx.playVoice({
+                localId: voiceLocalId // 需要播放的音频的本地ID，由stopRecord接口获得
+              });
+              _this._voiceTips()
 
-          },
-          fail: (res) => {
-            console.log(JSON.stringify(res));
-          }
-        });
+            },
+            fail: (res) => {
+              console.log(JSON.stringify(res));
+            }
+          });
+        }
+      }else {
+        return false
       }
+
     },
     _uploadVoice() {
       wx.uploadVoice({

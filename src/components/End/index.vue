@@ -15,11 +15,11 @@
       <div class="text-wrap ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1s">
         <div class="item">
           <span class="label">姓名</span>
-          <input type="text" class="ipt">
+          <input type="text" class="ipt" v-model="userName">
         </div>
         <div class="item">
           <span class="label">电话</span>
-          <input type="text" class="ipt">
+          <input type="text" class="ipt" v-model="mobile">
         </div>
         <div class="item">
           <span class="label"></span>
@@ -66,11 +66,11 @@ export default {
 
     fetchDownVoice() {
       if(!this.userName){
-        this._warnTips('请填写送祝福人的姓名')
+        this._warnTips('请填写您的姓名')
         return
       }
       if(!this.mobile){
-        this._warnTips('请填写送祝福人的手机号')
+        this._warnTips('请填写您的手机号')
         return
       }
       if(!this._checkPhone(this.mobile.trim())){
@@ -82,6 +82,8 @@ export default {
         if(status === 'ok'){
           let src = data.files
           this.playVoice(src)
+        }else {
+          this._errorTips('暂未收到祝福语音')
         }
       })
     },
@@ -115,12 +117,9 @@ export default {
       this.isPlay = false
     },
     playVoice(voiceSrc) {
-      if(voiceSrc) {
-        this.voice.setAttribute('src',voiceSrc)
-        this.voice.play()
-      }else {
-        this._errorTips('暂未收到祝福语音')
-      }
+      let src = `https://a.weixin.hndt.com/boom${voiceSrc}`
+      this.voice.setAttribute('src',src)
+      this.voice.play()
     }
   }
 }
