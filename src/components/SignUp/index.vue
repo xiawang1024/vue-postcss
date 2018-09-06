@@ -200,7 +200,7 @@ export default {
               }
             });
           })
-        },1500)
+        },500)
       }else {
         return
       }
