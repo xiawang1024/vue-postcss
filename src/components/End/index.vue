@@ -2,7 +2,7 @@
   <div class="end">
     <div class="one">
       <div class="logo ani" swiper-animate-effect="rotateIn" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
-      <!-- <img class="qrcode" src="../../common/imgs/qrcode.jpg" /> -->
+      <img class="qrcode" src="../../common/imgs/qrcode.jpg" />
       <div class="moon-wrap">
         <div class="light ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s"></div>
         <div class="moon ani" swiper-animate-effect="fadeInRight" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
@@ -11,9 +11,9 @@
       <div class="bird ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s"></div>
       <div class="leaf ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.75s"></div>
       <div class="cloud ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="1s"></div>
-      <!-- <div class="title"></div> -->
+      <div class="title ani" swiper-animate-effect="bounceIn" swiper-animate-duration="1s" swiper-animate-delay="0.75s"></div>
       <div class="text-wrap ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1s">
-        <!-- <div class="item">
+        <div class="item">
           <span class="label">姓名</span>
           <input type="text" class="ipt">
         </div>
@@ -25,31 +25,102 @@
           <span class="label"></span>
           <div class="ipt btn">
             <p class="tips">收听给你的语音</p>
-            <button class="submit">录音</button>
+            <button class="submit" @click="fetchDownVoice">播放录音</button>
           </div>
-        </div> -->
-        <img class="qrcode" src="../../common/imgs/qrcode.jpg" alt="">
-        <p class="tips">河南广播电视台音乐广播</p>
+        </div>
+        <!-- <img class="qrcode" src="../../common/imgs/qrcode.jpg" alt="">
+        <p class="tips">河南广播电视台音乐广播</p> -->
       </div>
-      <div class="bottom">河南广播云提供技术支持</div>
+      <div class="logo-text">魅力881河南广播电视台音乐广播</div>
+      <div class="bottom"></div>
     </div>
+    <audio src="" id="voice" style="display:none" @play='voicePlay' @pause='voicePause'></audio>
+    <div class="voice" v-show='isPlay'>
+      <img src="../../common/imgs/voice-recording.gif" alt="" class="img">
+      <p class="tips">正在播放...</p>
+    </div>
+    <simplert :useRadius="true" :useIcon="true" ref="simplert">
+    </simplert>
   </div>
 </template>
 
 <script>
-
-
+import { signUp, getUserInfo,downVoice } from 'api/index'
+import Simplert from 'vue2-simplert'
 export default {
   name:'end',
+  components:{
+    Simplert
+  },
   data() {
     return {
-
+      userName:'',
+      mobile:'',
+      isPlay:false
     }
   },
+  mounted() {
+    this.voice = document.getElementById('voice')
+  },
   methods:{
-    go() {
-      let url = 'https://apis.map.qq.com/uri/v1/marker?marker=coord:34.775580,113.718900;title:中油花园酒店;addr:河南省郑州市金水区商务外环路11号中油花园酒店4楼(近黄河东路,毗邻会展中心)&referer=myapp';
-      window.location.href = url;
+
+    fetchDownVoice() {
+      if(!this.userName){
+        this._warnTips('请填写送祝福人的姓名')
+        return
+      }
+      if(!this.mobile){
+        this._warnTips('请填写送祝福人的手机号')
+        return
+      }
+      if(!this._checkPhone(this.mobile.trim())){
+        this._warnTips('手机号不正确，请重新填写')
+        return
+      }
+      downVoice(this.userName,this.mobile).then((res) => {
+        let {data,status} = res.data
+        if(status === 'ok'){
+          let src = data.files
+          this.playVoice(src)
+        }
+      })
+    },
+    _checkPhone(phone) {
+      if(!(/^1[345678]\d{9}$/.test(phone))){
+          return false;
+      }else{
+          return true
+      }
+    },
+    _warnTips(message) {
+      let obj = {
+        message,
+        type: 'warning',
+        customCloseBtnText:'关闭'
+      }
+      this.$refs.simplert.openSimplert(obj)
+    },
+    _errorTips(message) {
+      let obj = {
+        message,
+        type: 'error',
+        customCloseBtnText:'关闭'
+      }
+      this.$refs.simplert.openSimplert(obj)
+    },
+    voicePlay() {
+      this.isPlay = true
+    },
+    voicePause() {
+      this.isPlay = false
+    },
+    playVoice(voiceSrc) {
+      if(voiceSrc) {
+        this.voice.setAttribute('src',voiceSrc)
+        this.voice.play()
+      }else {
+        this._errorTips('暂未收到祝福语音')
+      }
     }
   }
 }
@@ -73,7 +144,14 @@ export default {
     background: url('../../common/imgs/logo.png') center center no-repeat;
     background-size: cover;
   }
-
+  .qrcode{
+    position: absolute;
+    z-index: 10;
+    top:980px;
+    right: 40px;
+    width: 120px;
+    height: 120px;
+  }
   .moon-wrap{
     position: relative;
     .light{
@@ -130,7 +208,7 @@ export default {
   }
   .title{
     position: absolute;
-    top:338px;
+    top:280px;
     left: 0;
     width: 100%;
     height: 115px;
@@ -139,19 +217,66 @@ export default {
   }
   .text-wrap{
     position: absolute;
-    top:400px;
-    left:135px;
+    top:500px;
+    left:90px;
     width: 480px;
     color:#fff;
-    text-align: center;
-    .qrcode{
-      width: 300px;
-      height: 300px;
+     .item{
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 80px;
+      margin-bottom: 50px;
+      box-sizing: border-box;
+      .label{
+        width: 105px;
+        flex: 0 0 105px;
+        font-size: 28px;
+      }
+      .ipt{
+        flex:1;
+        height: 100%;
+        padding-left: 16px;
+        border: 1px solid #fff;
+        border-radius: 8px;
+        outline: none;
+        color:#fff;
+        background: none;
+        box-sizing: border-box;
+        appearance: none;
+        font-size: 28px;
+        &.btn{
+          border:none;
+          .tips{
+            width: 100%;
+            font-size: 22px;
+            color: #ccc;
+            text-align: center;
+          }
+          .submit{
+            margin-top: 30px;
+            width: 100%;
+            height:90px;
+            border-radius: 90px;
+            border:none;
+            font-size: 28px;
+            color: #fff;
+            background:#395bbb;
+            user-select: none;
+            &.isrecord{
+              background: #ca1717;
+            }
+          }
+        }
+      }
     }
-    .tips{
-      margin-top: 20px;
-      font-size: 30px;
-    }
+  }
+  .logo-text{
+    position: absolute;
+    top:1030px;
+    left:150px;
+    font-size: 28px;
+    color: #eee;
   }
   .bottom{
     position: absolute;
@@ -163,6 +288,27 @@ export default {
     color:#888;
     background: url('../../common/imgs/bottom.png') center center no-repeat;
     background-size: contain;
+  }
+}
+.voice{
+  position: absolute;
+  top:0;
+  right:0;
+  left:0;
+  bottom:0;
+  width: 200px;
+  height: 140px;
+  margin: auto;
+  padding:40px;
+  border-radius: 10px;
+  text-align: center;
+  background: #eee;
+  .img{
+    width: 120px;
+  }
+  .tips{
+    margin-top: 20px;
+    font-size: 28px;
   }
 }
 </style>

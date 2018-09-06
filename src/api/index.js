@@ -46,4 +46,27 @@ const getUserInfo = (openId, signId = 3) =>
 			signId
 		})
 	);
-export { voteFetch, voteNumFetch, signUp, getUserInfo };
+
+const uploadVoice = (mediaId, openId, nickname, toName, toMobile, avatar, signId = 4) =>
+	axios.post(
+		'/openapi/sign/blessing',
+		Qs.stringify({
+			mediaId,
+			openId,
+			nickname,
+			toName,
+			toMobile,
+			avatar,
+			signId
+		})
+	);
+const downVoice = (toName, toMobile, signId = 4) =>
+	axios.post(
+		'/openapi/sign/search',
+		Qs.stringify({
+			toName,
+			toMobile,
+			signId
+		})
+	);
+export { voteFetch, voteNumFetch, signUp, getUserInfo, uploadVoice, downVoice };
