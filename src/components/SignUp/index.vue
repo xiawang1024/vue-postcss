@@ -16,11 +16,11 @@
         <!-- <p class="name">送祝福的人</p> -->
         <div class="item">
           <span class="label">姓名</span>
-          <input type="text" class="ipt" v-model="userName">
+          <input type="text" class="ipt" v-model="userName" placeholder="填写真实姓名">
         </div>
         <div class="item">
           <span class="label">电话</span>
-          <input type="tel" class="ipt" v-model="mobile">
+          <input type="tel" class="ipt" v-model="mobile" placeholder="填写真实手机号">
         </div>
 
         <div class="item">
@@ -162,11 +162,11 @@ export default {
     },
     _checkIpt() {
       if(!this.userName){
-        this._warnTips('请填写送祝福人的姓名')
+        this._warnTips('请填写送祝福人的真实姓名')
         return false
       }
       if(!this.mobile){
-        this._warnTips('请填写送祝福人的手机号')
+        this._warnTips('请填写送祝福人的真实手机号')
         return false
       }
       if(!this._checkPhone(this.mobile.trim())){
