@@ -74,6 +74,7 @@ export default {
       this.voiceLocalId = localId
       this._uploadVoice()
     })
+    this.initRecord()
     this.startId = 0;
     this.endId = 0;
   },
