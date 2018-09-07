@@ -81,6 +81,19 @@ export default {
     clearTimeout(this.timeId)
   },
   methods:{
+    initRecord() {
+      if(!localStorage.rainAllowRecord || localStorage.rainAllowRecord !== 'true'){
+        wx.startRecord({
+          success:() => {
+            localStorage.rainAllowRecord = 'true'
+            wx.stopRecord()
+          },
+          cancel:() => {
+            alert('用户拒绝授权录音')
+          }
+        })
+      }
+    },
     _onClose() {
       // this._clearIpt()
     },
@@ -214,7 +227,7 @@ export default {
         console.log('------------------------------------');
         console.log(this.endId);
         console.log(this.startId);
-        if(this.endId - this.startId < 2000 ) {
+        if(this.endId - this.startId < 1500 ) {
           this.startId = this.endId = 0
           alert('时间过短，请重新录制！')
           clearTimeout(this.recordTimer)
