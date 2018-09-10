@@ -28,7 +28,7 @@
 import BUS from 'common/js/bus.js';
 import { WeChat } from 'weChat/util'
 const weChat = new WeChat()
-import { signIn } from 'api/index'
+import { signIn,signUp } from 'api/index'
 import Simplert from 'vue2-simplert'
 
 export default {
@@ -49,6 +49,10 @@ export default {
     })
   },
   methods:{
+    _singUp(userInfo) {
+      let {openid,headimgurl,nickname} = userInfo
+      signUp(openid,headimgurl,nickname)
+    },
     _signIn(openId) {
       signIn(openId).then(res => {
         let { status } = res.data

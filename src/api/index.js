@@ -21,16 +21,17 @@ const voteNumFetch = () => axios.get('/api/battle/entrevoteshowlist');
  * @param {*} position
  * @param {*} signId
  */
-const signUp = (openId, name, mobile, company, position, signId = 3) =>
+const signUp = (openId, avatar, name, signId = 3, mobile = '', company = '', position = '') =>
 	axios.post(
 		'/openapi/sign/add',
 		Qs.stringify({
 			openId,
+			avatar,
 			name,
+			signId,
 			mobile,
 			company,
-			position,
-			signId
+			position
 		})
 	);
 /**
