@@ -45,16 +45,14 @@ export default {
   mounted() {
     BUS.$on('SignIn', (userInfo) => {
       this.userInfo = userInfo;
-      this._signIn(userInfo.openid)
+      // this._signIn(userInfo.openid)
+      this._singIn(userInfo)
     })
   },
   methods:{
-    _singUp(userInfo) {
+    _singIn(userInfo) {
       let {openid,headimgurl,nickname} = userInfo
-      signUp(openid,headimgurl,nickname)
-    },
-    _signIn(openId) {
-      signIn(openId).then(res => {
+      signUp(openid,headimgurl,nickname).then(res => {
         let { status } = res.data
         if(status === 'ok') {
           this.isSignIn = true
@@ -62,8 +60,21 @@ export default {
           this._warnTips('请先报名，谢谢！')
           this.isSignIn = false
         }
+      }).catch(error => {
+        console.log(error)
       })
     },
+    // _signIn(openId) {
+    //   signIn(openId).then(res => {
+    //     let { status } = res.data
+    //     if(status === 'ok') {
+    //       this.isSignIn = true
+    //     } else {
+    //       this._warnTips('请先报名，谢谢！')
+    //       this.isSignIn = false
+    //     }
+    //   })
+    // },
     _signUp() {
       window.location.href = 'https://a.weixin.hndt.com/h5/signUp/20180918/index.html'
     },
