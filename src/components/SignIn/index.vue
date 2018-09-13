@@ -7,14 +7,17 @@
     </div>
     <div class="title">
     </div>
-    <div class="userInfo" v-show="isSignIn">
-      <div class="avatar-wrap">
+    <div class="userInfo">
+      <!-- <div class="avatar-wrap">
         <img :src="userInfo.headimgurl" alt="avatar" class="avatar">
       </div>
-      <p class="name">{{userInfo.nickname}}</p>
+      <p class="name">{{userInfo.nickname}}</p> -->
       <div class="success"></div>
+      <div class="qrcode-wrap">
+        <img src="../../common/imgs/qrcode.png" alt="" class="qrcode">
+        <p class="tips">（长按二维码进群）</p>
+      </div>
     </div>
-
     <div class="bottom"></div>
     <simplert :useRadius="true" :useIcon="true" ref="simplert">
     </simplert>
@@ -57,7 +60,7 @@ export default {
         if(status === 'ok') {
           this.isSignIn = true
         } else {
-          this._warnTips('请先报名，谢谢！')
+          // this._warnTips('请先报名，谢谢！')
           this.isSignIn = false
         }
       }).catch(error => {
@@ -156,6 +159,18 @@ export default {
       height: 118px;
       background: url('../../common/imgs/success.png') center center no-repeat;
       background-size: contain;
+    }
+    .qrcode-wrap{
+      width: 400px;
+      margin:100px auto;
+      .qrcode{
+        width: 260px;
+      }
+      .tips{
+        margin-top: 20px;
+        font-size: 30px;
+        color:red
+      }
     }
   }
 
