@@ -1,24 +1,24 @@
 <template>
   <div id="app">
-    <wxhd></wxhd>
-    <wxft></wxft>
+    <Home />
   </div>
 </template>
 
 <script>
-import wxhd from './base/Header/Header'
-import wxft from './base/Footer/Footer'
+import Home from './components/Slide.vue'
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
-    wxhd,
-    wxft
+    Home
   }
 }
 </script>
-<style lang="scss" scoped>
+
+<style lang="scss">
 #app {
+  width: 750px;
+  position: fixed;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,7 +26,3 @@ export default {
   color: #2c3e50;
 }
 </style>
-
-
-
-

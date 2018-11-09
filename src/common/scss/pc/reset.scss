@@ -31,8 +31,8 @@ input,
 button,
 textarea,
 menu {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 header,
@@ -47,18 +47,18 @@ figure,
 figcaption,
 menu,
 details {
-	display: block;
+  display: block;
 }
 
 table {
-	border-spacing: 0;
-	border-collapse: collapse;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 
 caption,
 th {
-	font-weight: normal;
-	text-align: left;
+  font-weight: normal;
+  text-align: left;
 }
 
 html,
@@ -67,7 +67,7 @@ fieldset,
 img,
 iframe,
 abbr {
-	border: 0;
+  border: 0;
 }
 
 i,
@@ -76,16 +76,16 @@ em,
 var,
 address,
 dfn {
-	font-style: normal;
+  font-style: normal;
 }
 
 [hidefocus],
 summary {
-	outline: 0;
+  outline: 0;
 }
 
 li {
-	list-style: none;
+  list-style: none;
 }
 
 h1,
@@ -95,39 +95,39 @@ h4,
 h5,
 h6,
 small {
-	font-size: 100%;
+  font-size: 100%;
 }
 
 sup,
 sub {
-	font-size: 83%;
+  font-size: 83%;
 }
 
 pre,
 code,
 kbd,
 samp {
-	font-family: inherit;
+  font-family: inherit;
 }
 
 q:before,
 q:after {
-	content: none;
+  content: none;
 }
 
 textarea {
-	overflow: auto;
-	resize: none;
+  overflow: auto;
+  resize: none;
 }
 
 label,
 summary {
-	cursor: default;
+  cursor: default;
 }
 
 a,
 button {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 h1,
@@ -139,7 +139,7 @@ h6,
 em,
 strong,
 b {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 del,
@@ -148,7 +148,7 @@ u,
 s,
 a,
 a:hover {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 body,
@@ -158,13 +158,23 @@ button,
 select,
 keygen,
 legend {
-	font: 12px/1.14 arial, 'Microsoft YaHei', 'Helvetica', 'sans-serif';
-	color: #333;
-	outline: 0;
+  font: 12px/1.14 arial, 'Microsoft YaHei', 'Helvetica', 'sans-serif';
+  color: #333;
+  outline: 0;
 }
 
 body {
-	background: #fff;
+  background: #fff;
 }
 
-.clearfix display:inline-block &::after display:block content:'.' height:0 line-height:0 clear:both visibility :hidden
+.clearfix {
+  display: inline-block;
+  &::after {
+    display: block;
+    content: '.';
+    height: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
