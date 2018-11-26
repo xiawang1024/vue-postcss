@@ -7,9 +7,9 @@
       <swiper-slide>
         <sign-up></sign-up>
       </swiper-slide>
-      <!-- <swiper-slide>
-        <end></end>
-      </swiper-slide> -->
+      <swiper-slide>
+        <List></List>
+      </swiper-slide>
     </swiper>
   </div>
 </template>
@@ -17,15 +17,16 @@
 <script>
 const { swiperAnimateCache, swiperAnimate } = require('common/js/animate.js')
 
-import One from '../One/index'
+// import One from '../One/index'
 import SignUp from '../SignUp/index'
-import End from '../End/index'
+// import End from '../End/index'
+import List from '../List/index'
 
 export default {
   components: {
-    One,
+    // One,
     SignUp,
-    End
+    List
   },
   data() {
     return {
