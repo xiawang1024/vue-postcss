@@ -1,15 +1,15 @@
 <template>
   <div class="home">
     <swiper :options="swiperOption">
-      <swiper-slide>
+      <!-- <swiper-slide>
         <one></one>
-      </swiper-slide>
+      </swiper-slide> -->
       <swiper-slide>
         <sign-up></sign-up>
       </swiper-slide>
-      <swiper-slide>
+      <!-- <swiper-slide>
         <end></end>
-      </swiper-slide>
+      </swiper-slide> -->
     </swiper>
   </div>
 </template>
@@ -30,28 +30,29 @@ export default {
   data() {
     return {
       swiperOption: {
-				direction : 'vertical',
-				loop : true,
-				// pagination: {
-				// 	el: '.swiper-pagination'
-				// },
-				on:{
-					init(){
-						swiperAnimateCache(this); //隐藏动画元素
-						swiperAnimate(this); //初始化完成开始动画
-					},
-					slideChangeTransitionEnd(){
-						swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
-					}
-				}
-			}
+        direction: 'vertical',
+        loop: true,
+        // pagination: {
+        // 	el: '.swiper-pagination'
+        // },
+        on: {
+          init() {
+            swiperAnimateCache(this) //隐藏动画元素
+            swiperAnimate(this) //初始化完成开始动画
+          },
+          slideChangeTransitionEnd() {
+            swiperAnimate(this) //每个slide切换结束时也运行当前slide动画
+          }
+        }
+      }
     }
   }
 }
 </script>
 
 <style lang="scss">
-.home, .swiper-container {
+.home,
+.swiper-container {
   position: absolute;
   top: 0;
   right: 0;
