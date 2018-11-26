@@ -9,6 +9,7 @@
     <div class="titlec ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
 
     </div>
+    <div class="list-title ani"></div>
 
     <simplert :useRadius="true" :useIcon="true" ref="simplert">
     </simplert>
@@ -16,6 +17,7 @@
 </template>
 
 <script>
+import ListData from './data.js'
 export default {
   name: 'list',
 
@@ -58,6 +60,13 @@ export default {
     width: 100%;
     height: 36px;
     background: url('../../common/imgs/titlec.png') center center no-repeat;
+    background-size: contain;
+  }
+  .list-title {
+    margin-top: 40px;
+    width: 100%;
+    height: 80px;
+    background: url('../../common/imgs/listTitle.png') center center no-repeat;
     background-size: contain;
   }
 }
