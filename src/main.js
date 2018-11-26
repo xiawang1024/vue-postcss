@@ -20,8 +20,8 @@ Vue.use(VueAwesomeSwiper)
 /**
  * 星空连线
  */
-import VueParticles from 'vue-particles'
-Vue.use(VueParticles)
+// import VueParticles from 'vue-particles'
+// Vue.use(VueParticles)
 
 Vue.config.productionTip = false
 

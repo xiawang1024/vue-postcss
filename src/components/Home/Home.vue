@@ -1,51 +1,52 @@
 <template>
   <div class="home">
-    <swiper :options="swiperOption">
-      <!-- <swiper-slide>
-        <one></one>
-      </swiper-slide> -->
-      <swiper-slide>
-        <sign-up></sign-up>
-      </swiper-slide>
-      <swiper-slide>
-        <List></List>
-      </swiper-slide>
-    </swiper>
+
+    <sign-up v-if="!isSignUp"></sign-up>
+    <List v-else></List>
   </div>
 </template>
 
 <script>
 const { swiperAnimateCache, swiperAnimate } = require('common/js/animate.js')
 
-// import One from '../One/index'
 import SignUp from '../SignUp/index'
-// import End from '../End/index'
-import List from '../List/index'
 
+import List from '../List/index'
+import { getUserInfo } from 'api/index'
+import { WeChat } from 'weChat/util'
+const weChat = new WeChat()
+import BUS from 'common/js/bus.js'
 export default {
   components: {
-    // One,
     SignUp,
     List
   },
   data() {
     return {
-      swiperOption: {
-        direction: 'vertical',
-        loop: true,
-        // pagination: {
-        // 	el: '.swiper-pagination'
-        // },
-        on: {
-          init() {
-            swiperAnimateCache(this) //隐藏动画元素
-            swiperAnimate(this) //初始化完成开始动画
-          },
-          slideChangeTransitionEnd() {
-            swiperAnimate(this) //每个slide切换结束时也运行当前slide动画
+      isSignUp: false
+    }
+  },
+  mounted() {
+    this._getUserInfo()
+    BUS.$on('toList', () => {
+      this.isSignUp = true
+    })
+  },
+  methods: {
+    _getUserInfo() {
+      let userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
+      getUserInfo(userInfo.openid)
+        .then(res => {
+          let { status, data } = res.data
+          if (status === 'ok') {
+            this.isSignUp = true
+          } else {
+            this.isSignUp = false
           }
-        }
-      }
+        })
+        .catch(error => {
+          this.isSignUp = true
+        })
     }
   }
 }
@@ -54,12 +55,14 @@ export default {
 <style lang="scss">
 .home,
 .swiper-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 </style>

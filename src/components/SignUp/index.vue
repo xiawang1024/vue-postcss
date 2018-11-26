@@ -129,13 +129,15 @@ export default {
     },
     _onClose() {
       this._clearIpt()
+      BUS.$emit('toList')
     },
     _successTips() {
       let obj = {
         title: '报名成功',
         type: 'success',
+        message: '即将跳转到节目单',
         onClose: this._onClose,
-        customCloseBtnText: '关闭'
+        customCloseBtnText: '确定'
       }
       this.$refs.simplert.openSimplert(obj)
     },

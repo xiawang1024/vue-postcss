@@ -46,4 +46,40 @@ const getUserInfo = (openId, signId = 5) =>
       signId
     })
   )
-export { voteFetch, voteNumFetch, signUp, getUserInfo }
+/**
+ * 点赞
+ */
+const AddCount = id =>
+  axios.get(
+    `https://a.weixin.hndt.com/boom/openapi/visit/add?name=WM&channelId=${id}`
+  )
+/**
+ * 点赞列表
+ */
+const GetListCount = () =>
+  axios.get(`https://a.weixin.hndt.com/boom/openapi/visit/list?name=WM`)
+
+/**
+ * 是否点赞
+ */
+const isOkZan = () => {
+  return new Promise(resolve => {
+    let list = localStorage.getItem('ZanList')
+    let JsonList = JSON.parse(list)
+    if (JsonList && JsonList.length == 0) {
+      resolve(0)
+    } else {
+      resolve(JsonList)
+    }
+  })
+}
+
+export {
+  voteFetch,
+  voteNumFetch,
+  signUp,
+  getUserInfo,
+  AddCount,
+  GetListCount,
+  isOkZan
+}
