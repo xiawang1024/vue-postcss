@@ -1,29 +1,65 @@
 <template>
   <div class="signUp">
     <div class="top">
-      <div class="logo ani" swiper-animate-effect="flip" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
+      <div
+        class="logo ani"
+        swiper-animate-effect="flip"
+        swiper-animate-duration="1s"
+        swiper-animate-delay="0s"
+      ></div>
     </div>
-    <div class="title ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
+    <div
+      class="title ani"
+      swiper-animate-effect="fadeInDown"
+      swiper-animate-duration="1s"
+      swiper-animate-delay="0.5s"
+    >
 
     </div>
-    <div class="titlec ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
+    <div
+      class="titlec ani"
+      swiper-animate-effect="fadeInDown"
+      swiper-animate-duration="1s"
+      swiper-animate-delay="0.5s"
+    >
 
     </div>
     <div v-if="!userInfo">
-      <div class="form ani" swiper-animate-effect="fadeIn" swiper-animate-duration="1s" swiper-animate-delay="0.85s">
+      <div
+        class="form ani"
+        swiper-animate-effect="fadeIn"
+        swiper-animate-duration="1s"
+        swiper-animate-delay="0.85s"
+      >
         <p class="item">
           <label for="">姓名：</label>
-          <input type="text" v-model="userName">
+          <input
+            type="text"
+            v-model="userName"
+          >
         </p>
         <p class="item">
           <label for="">部门：</label>
           <span @click="pickDepart">{{department}}</span>
         </p>
       </div>
-      <button class="btn ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1.25s" @click="postData">提交</button>
+      <button
+        class="btn ani"
+        swiper-animate-effect="fadeInUp"
+        swiper-animate-duration="1s"
+        swiper-animate-delay="1.25s"
+        @click="postData"
+      >提交</button>
     </div>
-    <user-info v-else :userInfo="userInfo"></user-info>
-    <simplert :useRadius="true" :useIcon="true" ref="simplert">
+    <user-info
+      v-else
+      :userInfo="userInfo"
+    ></user-info>
+    <simplert
+      :useRadius="true"
+      :useIcon="true"
+      ref="simplert"
+    >
     </simplert>
   </div>
 </template>
@@ -70,10 +106,15 @@ export default {
   },
   mounted() {
     // this._successTips()
-    BUS.$on('getUserInfo', () => {
-      setTimeout(() => {
-        this._getUserInfo()
-      }, 300)
+    // BUS.$on('getUserInfo', () => {
+
+    //   setTimeout(() => {
+    //     this._getUserInfo()
+    //   }, 300)
+    // })
+    BUS.$on('attention',() => {
+
+      this._attention('请先关注公众号')
     })
   },
   methods: {
@@ -154,6 +195,19 @@ export default {
         message,
         type: 'error',
         customCloseBtnText: '关闭'
+      }
+      this.$refs.simplert.openSimplert(obj)
+    },
+    _attention(message) {
+      function attent() {
+        window.location = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU2MzMzNjg0OQ==&scene=126&sessionid=1543280791&subscene=0#wechat_redirect'
+      }
+      let obj = {
+        message,
+        type: 'error',
+        onClose:attent,
+        disableOverlayClick: true,
+        customCloseBtnText: '关注'
       }
       this.$refs.simplert.openSimplert(obj)
     },

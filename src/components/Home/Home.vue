@@ -1,8 +1,8 @@
 <template>
   <div class="home">
 
-    <sign-up v-if="!isSignUp"></sign-up>
-    <List v-else></List>
+    <sign-up v-show="!isSignUp"></sign-up>
+    <List v-show="isSignUp"></List>
   </div>
 </template>
 
@@ -27,7 +27,9 @@ export default {
     }
   },
   mounted() {
-    this._getUserInfo()
+    BUS.$on('getUserInfo', () => {
+      this._getUserInfo()
+    })
     BUS.$on('toList', () => {
       this.isSignUp = true
     })
