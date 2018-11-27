@@ -1,5 +1,53 @@
 const companyData = [
   {
+    label: '台领导',
+    children: [
+      {
+        label: '台领导'
+      }
+    ]
+  },
+  {
+    label: '原两台领导',
+    children: [
+      {
+        label: '原两台领导'
+      }
+    ]
+  },
+  {
+    label: '筹备组',
+    children: [
+      {
+        label: '台人力资源部'
+      },
+      {
+        label: '台直属单位党委'
+      },
+      {
+        label: '宣传筹备组'
+      },
+      {
+        label: '综合筹备组'
+      },
+      {
+        label: '技术筹备组'
+      },
+      {
+        label: '财务筹备组'
+      },
+      {
+        label: '安保筹备组'
+      },
+      {
+        label: '改革办'
+      },
+      {
+        label: '第一书记办'
+      }
+    ]
+  },
+  {
     label: '广播',
     children: [
       {
@@ -172,39 +220,7 @@ const companyData = [
     ]
   },
   {
-    label: '总台',
-    children: [
-      {
-        label: '台人力资源部'
-      },
-      {
-        label: '台直属单位党委'
-      },
-      {
-        label: '宣传筹备组'
-      },
-      {
-        label: '综合筹备组'
-      },
-      {
-        label: '技术筹备组'
-      },
-      {
-        label: '财务筹备组'
-      },
-      {
-        label: '安保筹备组'
-      },
-      {
-        label: '改革办'
-      },
-      {
-        label: '第一书记办'
-      }
-    ]
-  },
-  {
-    label: '企业',
+    label: '台属集团单位',
     children: [
       {
         label: '河南电影电视制作集团有限公司'
@@ -259,12 +275,7 @@ const companyData = [
       },
       {
         label: '航空港卫视'
-      }
-    ]
-  },
-  {
-    label: '台属事业',
-    children: [
+      },
       {
         label: '河南省广播电视发射台'
       },
@@ -297,22 +308,6 @@ const companyData = [
       },
       {
         label: '河南广电服务中心'
-      }
-    ]
-  },
-  {
-    label: '台领导',
-    children: [
-      {
-        label: '台领导'
-      }
-    ]
-  },
-  {
-    label: '原台领导',
-    children: [
-      {
-        label: '原台领导'
       }
     ]
   }
