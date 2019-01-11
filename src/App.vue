@@ -1,25 +1,24 @@
 <template>
   <div id="app">
-    <Home />
+    <Index />
   </div>
 </template>
 
 <script>
-import Home from './components/Slide.vue'
+import Index from "views/Index";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    Home
+    Index
   }
-}
+};
 </script>
 
 <style lang="scss">
 #app {
   width: 750px;
-  position: fixed;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

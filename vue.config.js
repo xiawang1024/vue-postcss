@@ -1,6 +1,6 @@
-const path = require('path');
+const path = require('path')
 function resolve(dir) {
-	return path.join(__dirname, dir);
+	return path.join(__dirname, dir)
 }
 
 module.exports = {
@@ -14,6 +14,7 @@ module.exports = {
 			.set('conf', resolve('src/config'))
 			.set('weChat', resolve('src/weChat'))
 			.set('@api', resolve('src/api'))
-			.set('common', resolve('src/common'));
+			.set('common', resolve('src/common'))
+			.set('views', resolve('src/views'))
 	}
-};
+}
