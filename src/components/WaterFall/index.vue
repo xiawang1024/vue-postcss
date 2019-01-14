@@ -47,14 +47,18 @@ export default {
   },
   computed: {
     oddList: function() {
-      return this.itemList.filter((item, index) => {
+      let list = this.itemList.filter((item, index) => {
         return !!!(index % 2);
       });
+      list.push(this.itemList[this.itemList.length - 1]);
+      return list;
     },
     evenList: function() {
-      return this.itemList.filter((item, index) => {
+      let list = this.itemList.filter((item, index) => {
         return !!(index % 2);
       });
+      list.pop();
+      return list;
     }
   },
   methods: {
@@ -78,7 +82,7 @@ export default {
     flex-direction: column;
     .item {
       width: 345px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       border-radius: 8px;
       overflow: hidden;
       font-size: 0;
@@ -102,8 +106,9 @@ export default {
       .vote {
         outline: none;
         border: none;
+        border-radius: 4px;
+        padding: 4px 20px;
         color: #fff;
-        padding: 4px 16px;
         background: orange;
       }
     }
