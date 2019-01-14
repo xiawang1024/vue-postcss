@@ -21,6 +21,7 @@ export default {
 <style lang="scss" scoped>
 .banner-wrap {
   width: 750px;
+  font-size: 0;
   .banner {
     width: 100%;
   }

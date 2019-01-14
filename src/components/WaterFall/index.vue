@@ -4,52 +4,45 @@
       <div
         class="item"
         v-for="item of oddList"
-        :key="item.url"
+        :key="item.id"
+        @click="handlerClick(item.id)"
       >
         <img
           class="img"
-          :src="item.url"
+          v-lazy="item.icon"
           alt=""
-        >
+        />
+        <h3 class="name">{{item.title}}</h3>
+        <p class="vote-num">票数：20</p>
+        <button class="vote">投票</button>
       </div>
     </div>
     <div class="column">
       <div
         class="item"
         v-for="item of evenList"
-        :key="item.url"
+        :key="item.id"
+        @click="handlerClick(item.id)"
       >
         <img
           class="img"
-          :src="item.url"
+          v-lazy="item.icon"
           alt=""
-        >
+        />
+        <h3 class="name">{{item.title}}</h3>
+        <p class="vote-num">票数：20</p>
+        <button class="vote">投票</button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import DATA_LIST from "./data.js";
 export default {
   name: "WaterFall",
   data() {
     return {
-      itemList: [
-        {
-          url: "http://www.hndt.com/brand/612/res/pi3F3ZID.jpg?1497345245233"
-        },
-        {
-          url: "http://67.218.146.247:8090/3b8646ede7c3caa7aea13fde1ac2000d.jpg"
-        },
-        {
-          url: "http://www.hndt.com/brand/612/res/pi3F3ZID.jpg?1497345245233"
-        },
-        {
-          url: "http://67.218.146.247:8090/3b8646ede7c3caa7aea13fde1ac2000d.jpg"
-        },
-        {
-          url: "http://www.hndt.com/carrier/20181219/5/12751992084615462509.jpg"
-        }
-      ]
+      itemList: DATA_LIST
     };
   },
   computed: {
@@ -63,6 +56,11 @@ export default {
         return !!(index % 2);
       });
     }
+  },
+  methods: {
+    handlerClick(id) {
+      this.$router.push({ path: "/detail", query: { id } });
+    }
   }
 };
 </script>
@@ -73,6 +71,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px;
+  background: transparent;
   box-sizing: border-box;
   .column {
     display: flex;
@@ -82,9 +81,30 @@ export default {
       margin-bottom: 20px;
       border-radius: 8px;
       overflow: hidden;
+      font-size: 0;
+      background: #fff;
       box-sizing: border-box;
       .img {
         width: 100%;
+      }
+      .name,
+      .vote-num,
+      .vote {
+        font-size: 28px;
+        margin: 12px 0;
+      }
+      .name {
+        line-height: 1.25;
+        font-weight: bold;
+      }
+      .vote-num {
+      }
+      .vote {
+        outline: none;
+        border: none;
+        color: #fff;
+        padding: 4px 16px;
+        background: orange;
       }
     }
   }
