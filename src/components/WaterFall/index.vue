@@ -1,52 +1,67 @@
 <template>
-  <div class="water-fall">
-    <div class="column">
-      <div
-        class="item"
-        v-for="item of oddList"
-        :key="item.id"
-      >
-        <img
-          class="img"
-          v-lazy="item.icon"
-          alt=""
-        />
-        <h3 class="name">{{item.title}}</h3>
-        <p class="vote-num">票数：20</p>
-        <button
-          class="vote"
-          @click="handlerClick(item.id)"
-        >投票</button>
+  <div>
+    <div class="water-fall">
+      <div class="column">
+        <div
+          class="item"
+          v-for="item of oddList"
+          :key="item.id"
+        >
+          <img
+            class="img"
+            v-lazy="item.icon"
+            alt=""
+          />
+          <h3 class="name">{{item.title}}</h3>
+          <p class="vote-num">票数：{{voteList[item.id] || 0}}</p>
+          <button
+            class="vote"
+            @click="handlerClick(item.id)"
+          >投票</button>
+        </div>
+      </div>
+      <div class="column">
+        <div
+          class="item"
+          v-for="item of evenList"
+          :key="item.id"
+        >
+          <img
+            class="img"
+            v-lazy="item.icon"
+            alt=""
+          />
+          <h3 class="name">{{item.title}}</h3>
+          <p class="vote-num">票数：{{voteList[item.id] || 0}}</p>
+          <button
+            class="vote"
+            @click="handlerClick(item.id)"
+          >投票</button>
+        </div>
       </div>
     </div>
-    <div class="column">
-      <div
-        class="item"
-        v-for="item of evenList"
-        :key="item.id"
-      >
-        <img
-          class="img"
-          v-lazy="item.icon"
-          alt=""
-        />
-        <h3 class="name">{{item.title}}</h3>
-        <p class="vote-num">票数：20</p>
-        <button
-          class="vote"
-          @click="handlerClick(item.id)"
-        >投票</button>
-      </div>
-    </div>
+    <simplert
+      :useRadius="true"
+      :useIcon="false"
+      ref="simplert"
+    />
   </div>
 </template>
 <script>
+import store from "store";
+import Simplert from "vue2-simplert";
 import DATA_LIST from "./data.js";
+import STORE_NAME from "conf/store_conf";
+import { postVote, getVoteNum } from "@api/index.js";
 export default {
   name: "WaterFall",
+  components: {
+    Simplert
+  },
   data() {
     return {
-      itemList: DATA_LIST
+      itemList: DATA_LIST,
+      voteList: { 2291113: 1, "2291114": 2 }
     };
   },
   computed: {
@@ -65,9 +80,60 @@ export default {
       return list;
     }
   },
+  mounted() {
+    this.listPushVote();
+    store.set(STORE_NAME, {
+      createTime: null,
+      updateTime: null,
+      creater: null,
+      updater: null,
+      createrId: 0,
+      updaterId: 0,
+      id: 55022,
+      uid: null,
+      openid: "oaYgpwAWb44JGI4rdW8NCEgEMnJ8",
+      appid: "wx5f789dea59c6c2c5",
+      nickname: "冰糖先生",
+      sex: 1,
+      subscribe: 1,
+      city: "郑州",
+      country: "中国",
+      province: "河南",
+      headimgurl:
+        "http://thirdwx.qlogo.cn/mmopen/ajNVdqHZLLBoiccOrhP8bWINo3LVmuyk1ntubZea7EvcyuI2ZhmFbFBbKfuTa7PLmAiaa0wBjW2BQv90iciaFo1Sog/132",
+      unionid: "o-sTd1fwmgwOZrohX2G9rLtpD8CM",
+      remark: "",
+      isNewInfo: false
+    });
+  },
   methods: {
     handlerClick(id) {
-      this.$router.push({ path: "/detail", query: { id } });
+      // this.$router.push({ path: "/detail", query: { id } });
+      this.fetchVote(id);
+    },
+    fetchVote(id) {
+      let userInfo = store.get(STORE_NAME);
+      let { appid, openid } = userInfo;
+      postVote(id, openid).then(res => {
+        let { success, message } = res.data;
+        if (success) {
+          this.listPushVote();
+        }
+        this.tips(message);
+      });
+    },
+    listPushVote() {
+      getVoteNum().then(res => {
+        let { result } = res.data;
+        this.voteList = result;
+      });
+    },
+    tips(message) {
+      let obj = {
+        message,
+        customCloseBtnText: "确定"
+      };
+      this.$refs.simplert.openSimplert(obj);
     }
   }
 };
