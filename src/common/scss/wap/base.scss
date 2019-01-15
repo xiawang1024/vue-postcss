@@ -1,44 +1,44 @@
 body,
 html {
-  line-height: 1;
-  font-weight: 300;
-  font-family: 'Microsoft YaHei', 'PingFang SC', 'STHeitiSC-Light', 'Heiti SC', 'Roboto', 'Noto', arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: #fff
+	line-height: 1;
+	font-weight: 300;
+	font-family: 'Microsoft YaHei', 'PingFang SC', 'STHeitiSC-Light', 'Heiti SC', 'Roboto', 'Noto', arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background: transparent;
 }
 
 /* 固定宽高比 */
 
 [aspectratio] {
-  position: relative;
+	position: relative;
 }
 
 [aspectratio]::before {
-  content: '';
-  display: block;
-  width: 1px;
-  margin-left: -1px;
-  height: 0;
+	content: '';
+	display: block;
+	width: 1px;
+	margin-left: -1px;
+	height: 0;
 }
 
 [aspectratio-content] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
 }
 
 [w-16-9] {
-  aspect-ratio: '16:9'
+	aspect-ratio: '16:9';
 }
 
 // <div aspectratio w-16-9><div aspectratio-content></div></div>
 /* 解决部分机型img不显示问题 */
 
 img {
-  content: normal !important;
+	content: normal !important;
 }

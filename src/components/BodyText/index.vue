@@ -17,6 +17,7 @@ export default {
 .bd-text {
   width: 750px;
   margin: 0 auto;
+  background: transparent;
   box-sizing: border-box;
   .text {
     width: 650px;

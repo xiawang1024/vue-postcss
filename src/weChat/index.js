@@ -13,6 +13,6 @@ console.log(store.get(STORE_NAME))
 /**
  * 是否非微信客户端也可以打开
  */
-if (isWeChatBrowser()) {
-	weChatConf.init()
-}
+// if (isWeChatBrowser()) {
+// 	weChatConf.init()
+// }

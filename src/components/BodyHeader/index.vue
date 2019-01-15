@@ -40,6 +40,7 @@ export default {
   width: 750px;
   margin: 20px auto;
   text-align: center;
+  background: transparent;
   box-sizing: border-box;
   .img {
     width: 550px;
