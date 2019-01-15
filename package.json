@@ -8,6 +8,7 @@
 	},
 	"dependencies": {
 		"axios": "^0.18.0",
+		"draggabilly": "^2.2.0",
 		"fastclick": "^1.0.6",
 		"store": "^2.0.12",
 		"vue": "^2.5.17",

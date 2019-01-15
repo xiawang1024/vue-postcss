@@ -1,15 +1,23 @@
-import axios from 'axios';
-import Qs from 'qs';
-const postMsg = (page, cid = 4, creater = '', fromUid = '', content = '') =>
-	axios.post(
-		'http://talk.hndt.com/test/upRadio.do',
-		Qs.stringify({
-			page,
-			cid,
-			creater,
-			fromUid,
-			content
-		})
-	);
+import axios from 'axios'
+import Qs from 'qs'
+axios.baseURL = 'https://talk.hndt.com'
+const VOTE_ID = '27b9f805626b41ae822f41c1b7c361de'
 
-export { postMsg };
+const postVote = (itemid, phone, voteid = VOTE_ID) =>
+	axios.post(
+		'/dspdvote/tovote.do',
+		Qs.stringify({
+			itemid,
+			phone,
+			voteid
+		})
+	)
+const getVoteNum = (voteid = VOTE_ID) =>
+	axios.post(
+		'/dspdvote/getvote.do',
+		Qs.stringify({
+			voteid
+		})
+	)
+
+export { postVote, getVoteNum }

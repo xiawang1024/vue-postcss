@@ -5,7 +5,6 @@
         class="item"
         v-for="item of oddList"
         :key="item.id"
-        @click="handlerClick(item.id)"
       >
         <img
           class="img"
@@ -14,7 +13,10 @@
         />
         <h3 class="name">{{item.title}}</h3>
         <p class="vote-num">票数：20</p>
-        <button class="vote">投票</button>
+        <button
+          class="vote"
+          @click="handlerClick(item.id)"
+        >投票</button>
       </div>
     </div>
     <div class="column">
@@ -22,7 +24,6 @@
         class="item"
         v-for="item of evenList"
         :key="item.id"
-        @click="handlerClick(item.id)"
       >
         <img
           class="img"
@@ -31,7 +32,10 @@
         />
         <h3 class="name">{{item.title}}</h3>
         <p class="vote-num">票数：20</p>
-        <button class="vote">投票</button>
+        <button
+          class="vote"
+          @click="handlerClick(item.id)"
+        >投票</button>
       </div>
     </div>
   </div>

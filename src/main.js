@@ -11,7 +11,7 @@ import './init/index'
  */
 import VueLazyLoad from 'vue-lazyload'
 Vue.use(VueLazyLoad, {
-	loading: 'http://www.hndt.com/podcast/1111/res/xtmZ0Bee.png?1508751589195'
+	loading: require('./vueLazy/loading.jpg')
 })
 
 Vue.config.productionTip = false

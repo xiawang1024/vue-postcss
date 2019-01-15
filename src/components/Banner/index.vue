@@ -13,7 +13,7 @@ export default {
   name: "BannerWrap",
   data() {
     return {
-      imgUrl: require("./banner.jpg")
+      imgUrl: require("./banner.png")
     };
   }
 };
