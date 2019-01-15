@@ -31,18 +31,7 @@ export default {
     width: 200px;
     height: 200px;
     flex: 0 0 200px;
-
-    &::after {
-      content: "span";
-      display: inline-block;
-      width: 4px;
-      height: 200px;
-      position: absolute;
-      right: -20px;
-      background: orange;
-    }
   }
-
   .text {
     width: 400px;
     flex: 0 0 400px;

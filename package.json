@@ -11,7 +11,7 @@
 		"draggabilly": "^2.2.0",
 		"fastclick": "^1.0.6",
 		"store": "^2.0.12",
-		"vue": "^2.5.17",
+		"vue": "^2.5.22",
 		"vue-lazyload": "^1.2.6",
 		"vue-router": "^3.0.2",
 		"vue2-simplert": "^0.8.0",
@@ -31,7 +31,8 @@
 		"postcss-viewport-units": "^0.1.4",
 		"postcss-write-svg": "^3.0.1",
 		"sass-loader": "^7.0.1",
-		"vue-template-compiler": "^2.5.17"
+		"vue-template-compiler": "^2.5.17",
+		"vue-skeleton-webpack-plugin": "^1.2.2"
 	},
 	"postcss": {
 		"plugins": {
@@ -48,10 +49,7 @@
 				"viewportHeight": 1334,
 				"unitPrecision": 3,
 				"viewportUnit": "vw",
-				"selectorBlackList": [
-					".ignore",
-					".hairlines"
-				],
+				"selectorBlackList": [ ".ignore", ".hairlines" ],
 				"minPixelValue": 1,
 				"mediaQuery": false
 			},
@@ -63,9 +61,5 @@
 			}
 		}
 	},
-	"browserslist": [
-		"> 1%",
-		"last 2 versions",
-		"not ie <= 8"
-	]
+	"browserslist": [ "> 1%", "last 2 versions", "not ie <= 8" ]
 }
