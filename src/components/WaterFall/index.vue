@@ -13,7 +13,7 @@
             alt=""
           />
           <h3 class="name">{{item.title}}</h3>
-          <p class="vote-num">票数：{{voteList[item.id] || 0}}</p>
+          <p class="vote-num">票数：{{(voteList&&voteList[item.id]) || 0}}</p>
           <button
             class="vote"
             @click="handlerClick(item.id)"
@@ -32,7 +32,7 @@
             alt=""
           />
           <h3 class="name">{{item.title}}</h3>
-          <p class="vote-num">票数：{{voteList[item.id] || 0}}</p>
+          <p class="vote-num">票数：{{(voteList&&voteList[item.id]) || 0}}</p>
           <button
             class="vote"
             @click="handlerClick(item.id)"
@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       itemList: DATA_LIST,
-      voteList: { 2291113: 1, "2291114": 2 }
+      voteList: {}
     };
   },
   computed: {
@@ -117,13 +117,17 @@ export default {
         return false;
       }
       let { appid, openid } = userInfo;
-      postVote(id, openid).then(res => {
-        let { success, message } = res.data;
-        if (success) {
-          this.listPushVote();
-        }
-        this.tips(message);
-      });
+      postVote(id, openid)
+        .then(res => {
+          let { success, message } = res.data;
+          if (success) {
+            this.listPushVote();
+          }
+          this.tips(message);
+        })
+        .catch(err => {
+          this.tips("系统错误，请联系管理员");
+        });
     },
     listPushVote() {
       getVoteNum().then(res => {

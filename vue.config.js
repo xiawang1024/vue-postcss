@@ -7,6 +7,7 @@ function resolve(dir) {
 
 module.exports = {
 	publicPath: './',
+	productionSourceMap: false,
 	/**
 	 * 骨架屏
 	 */
