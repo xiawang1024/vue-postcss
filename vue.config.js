@@ -44,11 +44,11 @@ module.exports = {
 	devServer: {
 		proxy: {
 			'/api': {
-				target: 'https://localhost:3000',
+				target: 'http://www.softzztiedu.top/',
 				ws: true,
 				changeOrigin: true,
 				pathRewrite: {
-					'^/api': '/'
+					'^/api': ''
 				}
 			}
 		}

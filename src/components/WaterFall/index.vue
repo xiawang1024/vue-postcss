@@ -82,29 +82,29 @@ export default {
   },
   mounted() {
     this.listPushVote();
-    store.set(STORE_NAME, {
-      createTime: null,
-      updateTime: null,
-      creater: null,
-      updater: null,
-      createrId: 0,
-      updaterId: 0,
-      id: 55022,
-      uid: null,
-      openid: "oaYgpwAWb44JGI4rdW8NCEgEMnJ8",
-      appid: "wx5f789dea59c6c2c5",
-      nickname: "冰糖先生",
-      sex: 1,
-      subscribe: 1,
-      city: "郑州",
-      country: "中国",
-      province: "河南",
-      headimgurl:
-        "http://thirdwx.qlogo.cn/mmopen/ajNVdqHZLLBoiccOrhP8bWINo3LVmuyk1ntubZea7EvcyuI2ZhmFbFBbKfuTa7PLmAiaa0wBjW2BQv90iciaFo1Sog/132",
-      unionid: "o-sTd1fwmgwOZrohX2G9rLtpD8CM",
-      remark: "",
-      isNewInfo: false
-    });
+    // store.set(STORE_NAME, {
+    //   createTime: null,
+    //   updateTime: null,
+    //   creater: null,
+    //   updater: null,
+    //   createrId: 0,
+    //   updaterId: 0,
+    //   id: 55022,
+    //   uid: null,
+    //   openid: "obhApxEhhmi518lSbgzt4kS0zKgw",
+    //   appid: "wx5f789dea59c6c2c5",
+    //   nickname: "冰糖先生",
+    //   sex: 1,
+    //   subscribe: 1,
+    //   city: "郑州",
+    //   country: "中国",
+    //   province: "河南",
+    //   headimgurl:
+    //     "http://thirdwx.qlogo.cn/mmopen/ajNVdqHZLLBoiccOrhP8bWINo3LVmuyk1ntubZea7EvcyuI2ZhmFbFBbKfuTa7PLmAiaa0wBjW2BQv90iciaFo1Sog/132",
+    //   unionid: "o-sTd1fwmgwOZrohX2G9rLtpD8CM",
+    //   remark: "",
+    //   isNewInfo: false
+    // });
   },
   methods: {
     handlerClick(id) {
@@ -112,6 +112,10 @@ export default {
     },
     fetchVote(id) {
       let userInfo = store.get(STORE_NAME);
+      if (!userInfo) {
+        this.tips("请刷新页面授权后再继续操作");
+        return false;
+      }
       let { appid, openid } = userInfo;
       postVote(id, openid).then(res => {
         let { success, message } = res.data;
