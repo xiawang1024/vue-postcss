@@ -1,7 +1,6 @@
 import { WeChatConf } from './util'
 // import { isWeChatBrowser } from 'common/js/util'
 const weChatConf = new WeChatConf()
-console.log(store.get(STORE_NAME))
 
 weChatConf.init()
 /**
