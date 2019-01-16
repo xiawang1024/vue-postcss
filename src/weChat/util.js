@@ -1,3 +1,6 @@
+import store from 'store'
+import STORE_NAME from 'conf/store_conf'
+
 import { WeChat_init } from './weChat_config';
 import { GetOpenIdByCode, WeChat_Conf_Init } from '@api/weChat';
 import { appId, shareLink } from 'conf/weChatShare_conf';
@@ -62,7 +65,13 @@ class WeChatConf extends WeChat {
 	}
 	async init() {
 		try {
-			this.hasCode();
+			/**
+			* 如果本地储存里没有用户信息，则授权获取用户信息流程
+			*/
+			if (!store.get(STORE_NAME)) {
+				this.hasCode();
+			}
+			
 			let data = await WeChat_Conf_Init();
 			WeChat_init(data);
 		} catch (e) {
