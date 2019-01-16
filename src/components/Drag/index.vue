@@ -3,19 +3,35 @@
     class="drag"
     ref="drag"
   >
-    <p class="text">抽奖</p>
+    <p class="text">{{text}}</p>
   </div>
 </template>
 <script>
 import Draggabilly from "draggabilly";
 export default {
   name: "Drag",
+  props: {
+    clickType: {
+      type: String,
+      default: "0"
+    }
+  },
+  computed: {
+    text: function() {
+      return this.clickType === "0" ? "抽奖" : "返回";
+    }
+  },
   mounted() {
     this.initDrag();
   },
   methods: {
     handlerClick() {
-      alert("aaa");
+      // alert("aaa");
+      if (this.clickType === "0") {
+        this.$router.push("/prize");
+      } else {
+        this.$router.push("/");
+      }
     },
 
     onResize() {

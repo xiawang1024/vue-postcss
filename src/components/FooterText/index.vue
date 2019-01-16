@@ -24,7 +24,7 @@
 </template>
 <script>
 export default {
-  name: "BdText",
+  name: "FtText",
   props: {
     textList: {
       type: Array,
@@ -44,7 +44,7 @@ export default {
 <style lang="scss" scoped>
 .bd-text {
   width: 750px;
-  margin: 0 auto;
+  margin: 60px auto;
   background: transparent;
   box-sizing: border-box;
   .text {

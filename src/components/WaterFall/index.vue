@@ -108,7 +108,6 @@ export default {
   },
   methods: {
     handlerClick(id) {
-      // this.$router.push({ path: "/detail", query: { id } });
       this.fetchVote(id);
     },
     fetchVote(id) {
@@ -157,6 +156,7 @@ export default {
       overflow: hidden;
       font-size: 0;
       background: #fff;
+      box-shadow: 2px 2px 20px 2px #999;
       box-sizing: border-box;
       .img {
         width: 100%;
