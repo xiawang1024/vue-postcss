@@ -1,5 +1,5 @@
-import wx from 'weixin-js-sdk';
-import { shareLink, shareTitle, shareDesc, shareImg } from 'conf/weChatShare_conf';
+import wx from 'weixin-js-sdk'
+import { shareLink, shareTitle, shareDesc, shareImg } from 'conf/weChatShare_conf'
 /**
  * 微信sdk初始化
  * @param {*} data 微信配置信息
@@ -25,7 +25,8 @@ const WeChat_init = (data) => {
 			'stopVoice',
 			'openLocation'
 		]
-	});
+	})
+
 	wx.ready(() => {
 		wx.onMenuShareTimeline({
 			title: shareTitle,
@@ -33,7 +34,7 @@ const WeChat_init = (data) => {
 			imgUrl: shareImg,
 			success: function() {},
 			cancel: function() {}
-		});
+		})
 		wx.onMenuShareAppMessage({
 			title: shareTitle,
 			link: shareLink,
@@ -43,7 +44,8 @@ const WeChat_init = (data) => {
 			dataUrl: '',
 			success: function() {},
 			cancel: function() {}
-		});
-	});
-};
-export { WeChat_init };
+		})
+	})
+}
+
+export { WeChat_init }
