@@ -262,6 +262,18 @@ const DATA_LIST = [
 		url: 'http://www.hndt.com/zt/basketball/201901/11/2291137/index.json',
 		channel: '打鱼晒网之小篮球',
 		createtime: '2019-01-11 15:49:43'
+	},
+	{
+		id: '2297651',
+		title: '优尼champion队',
+		name: '',
+		keyword: 'no',
+		desc: '',
+		icon: 'http://www.hndt.com/zt/basketball/201901/18/2297651/res/VSCArRq9.jpg',
+		link: 'http://www.hndt.com/zt/basketball/201901/18/2297651/index.app.html',
+		url: 'http://www.hndt.com/zt/basketball/201901/18/2297651/index.json',
+		channel: '打鱼晒网之小篮球',
+		createtime: '2019-01-18 20:19:35'
 	}
 ]
 export default DATA_LIST

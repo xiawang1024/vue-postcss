@@ -66,18 +66,16 @@ export default {
   },
   computed: {
     oddList: function() {
-      let list = this.itemList.filter((item, index) => {
+      return this.itemList.filter((item, index) => {
         return !!!(index % 2);
       });
-      list.push(this.itemList[this.itemList.length - 1]);
-      return list;
+     
     },
     evenList: function() {
-      let list = this.itemList.filter((item, index) => {
+     return this.itemList.filter((item, index) => {
         return !!(index % 2);
       });
-      list.pop();
-      return list;
+     
     }
   },
   mounted() {
