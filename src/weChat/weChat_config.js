@@ -5,8 +5,9 @@ import { shareLink, shareTitle, shareDesc, shareImg } from 'conf/weChatShare_con
  * @param {*} data 微信配置信息
  */
 const WeChat_init = (data) => {
+	console.log(data)
 	wx.config({
-		debug: false,
+		debug: true,
 		appId: data.appId,
 		timestamp: data.timestamp,
 		nonceStr: data.nonceStr,

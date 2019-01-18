@@ -36,8 +36,9 @@ const GetOpenIdByCode = (code, state, subscribe = false) => {
 
 const WeChat_Conf_Init = () => {
 	return new Promise((resolve, reject) => {
+		console.log(window.location.href)
 		axios
-			.post(WeChat_Conf_Url, Qs.stringify({ url: window.location.href }))
+			.post(WeChat_Conf_Url, Qs.stringify({ url: window.location.href.split('#')[0] }))
 			.then((res) => {
 				let data = res.data
 				resolve(data)

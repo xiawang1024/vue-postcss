@@ -1,4 +1,4 @@
-const baseURL = 'https://a.weixin.hndt.com/h5/hntv2/dysw'
+const baseURL = 'https://a.weixin.hndt.com/h5/hntv2/dysw-s'
 /**
  * 打鱼晒网微信相关配置
  * appId 都市频道公众号
