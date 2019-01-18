@@ -17,6 +17,12 @@
           2019年1月18日--2月19日
         </span>
       </p>
+      <p
+        class="text"
+        style="text-align:left;"
+      >
+        获得投票最多的前三名球队，将受邀参观河南广播电视台并和嘉宁、韩佳一起参与都市频道打鱼晒网节目的录制。这三支球队都将获得球队专属梦联赛精彩集锦＋短视频一份，给孩子们留下一份最美好的篮球回忆！
+      </p>
     </div>
 
   </div>
@@ -33,7 +39,7 @@ export default {
   background: transparent;
   box-sizing: border-box;
   .text-wrap {
-    width: 550px;
+    width: 650px;
     margin: auto;
     padding: 8px 16px;
     border-radius: 6px;
