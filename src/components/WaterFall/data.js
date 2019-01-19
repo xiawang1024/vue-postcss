@@ -181,7 +181,7 @@ const DATA_LIST = [
 	},
 	{
 		id: '2291131',
-		title: '优尼帝高队',
+		title: '优尼追梦帝高队',
 		name: '',
 		keyword: 'no',
 		desc: '',
@@ -274,6 +274,18 @@ const DATA_LIST = [
 		url: 'http://www.hndt.com/zt/basketball/201901/18/2297651/index.json',
 		channel: '打鱼晒网之小篮球',
 		createtime: '2019-01-18 20:19:35'
+	},
+	{
+		id: '2297804',
+		title: '优尼小精灵队',
+		name: '',
+		keyword: 'no',
+		desc: '',
+		icon: 'http://www.hndt.com/zt/basketball/201901/19/2297804/res/gGWjNlS3.jpg',
+		link: 'http://www.hndt.com/zt/basketball/201901/19/2297804/index.app.html',
+		url: 'http://www.hndt.com/zt/basketball/201901/19/2297804/index.json',
+		channel: '打鱼晒网之小篮球',
+		createtime: '2019-01-19 16:14:00'
 	}
 ]
 export default DATA_LIST
