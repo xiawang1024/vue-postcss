@@ -13,17 +13,8 @@
       swiper-animate-effect="fadeInDown"
       swiper-animate-duration="1s"
       swiper-animate-delay="0.5s"
-    >
+    ></div>
 
-    </div>
-    <div
-      class="titlec ani"
-      swiper-animate-effect="fadeInDown"
-      swiper-animate-duration="1s"
-      swiper-animate-delay="0.5s"
-    >
-
-    </div>
     <div v-if="!userInfo">
       <div
         class="form ani"
@@ -32,14 +23,11 @@
         swiper-animate-delay="0.85s"
       >
         <p class="item">
-          <label for="">姓名：</label>
-          <input
-            type="text"
-            v-model="userName"
-          >
+          <label for>姓名</label>
+          <input type="text" v-model="userName">
         </p>
         <p class="item">
-          <label for="">部门：</label>
+          <label for>部门</label>
           <span @click="pickDepart">{{department}}</span>
         </p>
       </div>
@@ -49,104 +37,92 @@
         swiper-animate-duration="1s"
         swiper-animate-delay="1.25s"
         @click="postData"
-      >提交</button>
+      >签&nbsp;&nbsp;到</button>
     </div>
-    <user-info
-      v-else
-      :userInfo="userInfo"
-    ></user-info>
-    <simplert
-      :useRadius="true"
-      :useIcon="true"
-      ref="simplert"
-    >
-    </simplert>
+    <user-info v-else :userInfo="userInfo"></user-info>
+    <simplert :useRadius="true" :useIcon="true" ref="simplert"></simplert>
   </div>
 </template>
 
 <script>
-import { WeChat } from 'weChat/util'
-const weChat = new WeChat()
-import { signUp, getUserInfo } from 'api/index'
+import { WeChat } from "weChat/util";
+const weChat = new WeChat();
+import { signUp, getUserInfo } from "api/index";
 
-import weui from 'weui.js'
+import weui from "weui.js";
 
-import companyData from './data.js'
+import companyData from "./data3.js";
 /**
  * Bus
  */
-import BUS from 'common/js/bus.js'
+import BUS from "common/js/bus.js";
 
-import Simplert from 'vue2-simplert'
-import UserInfo from 'base/UserInfo/index'
+import Simplert from "vue2-simplert";
+import UserInfo from "base/UserInfo/index";
+
+import { weChatName } from "../../config.js";
+
 export default {
-  name: 'signUp',
+  name: "signUp",
   components: {
     Simplert,
     UserInfo
   },
   data() {
     return {
-      userName: '',
-      mobile: '',
-      company: '',
-      position: '',
+      userName: "",
+      mobile: "",
+      company: "",
+      position: "",
       isSingUp: true,
       userInfo: null
-    }
+    };
   },
   computed: {
     department: function() {
       if (!this.company) {
-        return '请选择您的部门'
+        return "点击选择部门";
       } else {
-        return `${this.company}--${this.position}`
+        return `${this.company}--${this.position}`;
       }
     }
   },
   mounted() {
-    // this._successTips()
-    // BUS.$on('getUserInfo', () => {
-
-    //   setTimeout(() => {
-    //     this._getUserInfo()
-    //   }, 300)
-    // })
-    BUS.$on('attention',() => {
-
-      this._attention('请先关注公众号')
-    })
+    BUS.$on("attention", () => {
+      let msg = `<p>长按二维码关注"河南广播电视台"公众号</p><p style='color:#f8011e'>（关注后请重新刷新页面）</p>`;
+      this._attention(msg);
+    });
   },
   methods: {
     pickDepart() {
       weui.picker(companyData, {
-        className: 'signUp-weui',
-        defaultValue: [1, 3],
+        className: "signUp-weui",
+        defaultValue: [0, 0],
         onChange: result => {
-          let [company, position] = result
-          this.company = company.label
-          this.position = position.label
+          let [company, position] = result;
+          this.company = company.label;
+          this.position = position.label;
         },
         onConfirm: result => {
-          console.log(result)
+          console.log(result);
         },
-        id: 'doubleLinePicker'
-      })
+        id: "doubleLinePicker"
+      });
     },
     postData() {
       if (!this.userName) {
-        this._warnTips('请填写您的姓名')
-        return
+        this._warnTips("请填写您的姓名");
+        return;
       }
       if (!this.company) {
-        this._warnTips('请选择您的部门')
-        return
+        this._warnTips("请选择您的部门");
+        return;
       }
       if (!this.position) {
-        this._warnTips('请选择您的部门')
-        return
+        this._warnTips("请选择您的部门");
+        return;
       }
-      let userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
+      let userInfo = JSON.parse(weChat.getStorage(weChatName));
 
       signUp(
         userInfo.openid,
@@ -156,76 +132,80 @@ export default {
         this.position
       )
         .then(res => {
-          let { status } = res.data
-          if (status === 'ok') {
-            this._successTips()
+          let { status } = res.data;
+          if (status === "ok") {
+            this._successTips();
           } else {
-            this._errorTips('报名失败，请重试！')
+            this._errorTips("报名失败，请重试！");
           }
         })
         .catch(err => {
-          console.log(err)
+          console.log(err);
           // this._errorTips('网络错误，请重试')
-        })
+        });
     },
     _onClose() {
-      this._clearIpt()
-      BUS.$emit('toList')
+      this._clearIpt();
+      BUS.$emit("toList");
     },
     _successTips() {
       let obj = {
-        title: '报名成功',
-        type: 'success',
-        message: '即将跳转到节目单',
+        title: "签到成功",
+        type: "success",
+        // message: "即将跳转到节目单",
         onClose: this._onClose,
-        customCloseBtnText: '确定'
-      }
-      this.$refs.simplert.openSimplert(obj)
+        customCloseBtnText: "确定"
+      };
+      this.$refs.simplert.openSimplert(obj);
     },
     _warnTips(message) {
       let obj = {
         message,
-        type: 'warning',
-        customCloseBtnText: '关闭'
-      }
-      this.$refs.simplert.openSimplert(obj)
+        type: "warning",
+        customCloseBtnText: "关闭"
+      };
+      this.$refs.simplert.openSimplert(obj);
     },
     _errorTips(message) {
       let obj = {
         message,
-        type: 'error',
-        customCloseBtnText: '关闭'
-      }
-      this.$refs.simplert.openSimplert(obj)
+        type: "error",
+        customCloseBtnText: "关闭"
+      };
+      this.$refs.simplert.openSimplert(obj);
     },
     _attention(message) {
       function attent() {
-        window.location = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU2MzMzNjg0OQ==&scene=126&sessionid=1543280791&subscene=0#wechat_redirect'
+        // window.location =
+        // "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU2MzMzNjg0OQ==&scene=126&sessionid=1543280791&subscene=0#wechat_redirect";
+        return false;
       }
       let obj = {
         message,
-        type: 'error',
-        onClose:attent,
-        disableOverlayClick: true,
-        customCloseBtnText: '关注'
-      }
-      this.$refs.simplert.openSimplert(obj)
+        type: "info",
+        // onClose: attent,
+        customIconUrl: "http://www.hndt.com/nh5/hngd/imgs/qr.jpg",
+        hideAllButton: true,
+
+        disableOverlayClick: true
+      };
+      this.$refs.simplert.openSimplert(obj);
     },
     _getUserInfo() {
-      let userInfo = JSON.parse(weChat.getStorage('WXHNDTOPENID'))
+      let userInfo = JSON.parse(weChat.getStorage(weChatName));
       getUserInfo(userInfo.openid)
         .then(res => {
-          let { status, data } = res.data
-          if (status === 'ok') {
-            this.userInfo = data
+          let { status, data } = res.data;
+          if (status === "ok") {
+            this.userInfo = data;
           } else {
-            this.userInfo = null
+            this.userInfo = null;
           }
         })
         .catch(error => {
-          this._errorTips('网络错误，请重试')
-          console.log(error)
-        })
+          this._errorTips("网络错误，请重试");
+          console.log(error);
+        });
     },
     _clearIpt() {
       let obj = {
@@ -233,27 +213,27 @@ export default {
         mobile: this.mobile,
         company: this.company,
         position: this.position
-      }
+      };
 
       this.$nextTick(() => {
-        this.userInfo = obj
-      })
+        this.userInfo = obj;
+      });
       setTimeout(() => {
-        this.userName = ''
-        this.mobile = ''
-        this.company = ''
-        this.position = ''
-      }, 500)
+        this.userName = "";
+        this.mobile = "";
+        this.company = "";
+        this.position = "";
+      }, 500);
     },
     _checkPhone(phone) {
       if (!/^1[345678]\d{9}$/.test(phone)) {
-        return false
+        return false;
       } else {
-        return true
+        return true;
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -261,7 +241,7 @@ export default {
   width: 100%;
   height: 100%;
   text-align: center;
-  background: url('../../common/imgs/bg.png') center center no-repeat;
+  background: url("../../common/imgs/bg.png") center center no-repeat;
   background-size: cover;
   .top {
     position: relative;
@@ -274,64 +254,77 @@ export default {
       left: 35px;
       width: 100px;
       height: 80px;
-      background: url('../../common/imgs/logo.png') center center no-repeat;
+      background: url("../../common/imgs/logo.png") center center no-repeat;
       background-size: cover;
     }
   }
   .title {
-    margin-top: 40px;
+    margin-top: 120px;
     width: 100%;
-    height: 260px;
-    background: url('../../common/imgs/title.png') center center no-repeat;
+    height: 335px;
+    background: url("../../common/imgs/title.png") center center no-repeat;
     background-size: contain;
   }
-  .titlec {
-    width: 100%;
-    height: 36px;
-    background: url('../../common/imgs/titlec.png') center center no-repeat;
-    background-size: contain;
-  }
+
   .form {
-    width: 515px;
-    margin: 120px auto 0;
+    width: 560px;
+    margin: 150px auto 0;
     .item {
       display: flex;
+      height: 90px;
       align-items: center;
       margin-bottom: 80px;
       padding-bottom: 8px;
       font-size: 32px;
 
       line-height: 1.215;
-      border-bottom: 1px solid #e7d401;
+      // border-bottom: 1px solid #e7d401;
       label {
-        flex: 0 0 100px;
-        width: 100px;
-        color: #e7d401;
+        flex: 0 0 120px;
+        width: 120px;
+        font-size: 36px;
+        font-weight: bold;
+        color: #fff;
       }
       input {
-        background: none;
+        flex: 0 0 440px;
+        width: 440px;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.5);
         border: none;
         outline: none;
-        color: #ddd;
+        color: #333;
+        padding-left: 20px;
+        border-radius: 10px;
+        box-sizing: border-box;
       }
       span {
-        display: inline-block;
+        display: flex;
+        align-items: center;
         width: 100%;
+        height: 100%;
+        font-size: 26px;
+        background: rgba(255, 255, 255, 0.5);
         text-align: left;
-        color: #ddd;
+        color: #333;
+        padding: 0 10px;
+        border-radius: 10px;
+        box-sizing: border-box;
       }
     }
   }
   .btn {
     margin-top: 50px;
-    width: 300px;
-    height: 70px;
+    margin-bottom: 150px;
+    width: 400px;
+    height: 96px;
     border: none;
     border-radius: 70px;
     outline: none;
-    font-size: 32px;
-    color: #0081dc;
-    background: #fff;
+    font-size: 40px;
+    color: #fff;
+    // letter-spacing: 10px;
+    background: linear-gradient(#f29837, #e15e14);
     user-select: none;
     &:active {
       background: rgba(255, 255, 255, 0.5);

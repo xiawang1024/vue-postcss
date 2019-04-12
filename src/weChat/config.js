@@ -1,9 +1,9 @@
-const baseUrl = 'https://a.weixin.hndt.com/h5'
+const baseUrl = 'http://www.hndt.com/nh5'
 const appId = 'wxdd9c1d7b34725b2c'
-const shareLink = `${baseUrl}/signUp/20181126/index.html`
-const shareTitle = '践行“五每”，争做出彩广电人'
-const shareDesc = '践行“五每”，争做出彩广电人演讲比赛'
+const shareLink = `${baseUrl}/hngd/20190412/index.html`
+const shareTitle = '河南广电传媒集团控股干部大会'
+const shareDesc = '河南广电传媒集团控股干部大会'
 // const shareImg = require('../common/imgs/logo.png');
-const shareImg = `${baseUrl}/signUp/20181126/logo.png`
+const shareImg = `${baseUrl}/hngd/20190412/logo.png`
 
 export { appId, shareLink, shareTitle, shareDesc, shareImg }
