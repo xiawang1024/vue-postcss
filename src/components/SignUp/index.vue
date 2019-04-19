@@ -26,10 +26,10 @@
           <label for>姓名</label>
           <input type="text" v-model="userName">
         </p>
-        <p class="item">
+        <!-- <p class="item">
           <label for>部门</label>
           <span @click="pickDepart">{{department}}</span>
-        </p>
+        </p>-->
       </div>
       <button
         class="btn ani"
@@ -114,14 +114,14 @@ export default {
         this._warnTips("请填写您的姓名");
         return;
       }
-      if (!this.company) {
-        this._warnTips("请选择您的部门");
-        return;
-      }
-      if (!this.position) {
-        this._warnTips("请选择您的部门");
-        return;
-      }
+      // if (!this.company) {
+      //   this._warnTips("请选择您的部门");
+      //   return;
+      // }
+      // if (!this.position) {
+      //   this._warnTips("请选择您的部门");
+      //   return;
+      // }
       let userInfo = JSON.parse(weChat.getStorage(weChatName));
 
       signUp(
@@ -186,7 +186,6 @@ export default {
         // onClose: attent,
         customIconUrl: "http://www.hndt.com/nh5/hngd/imgs/qr.jpg",
         hideAllButton: true,
-
         disableOverlayClick: true
       };
       this.$refs.simplert.openSimplert(obj);
@@ -238,6 +237,11 @@ export default {
 
 <style lang="scss" scoped>
 .signUp {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
   text-align: center;
