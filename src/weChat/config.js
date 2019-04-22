@@ -1,5 +1,5 @@
 const baseUrl = "http://www.hndt.com/nh5";
-const appId = "wxdd9c1d7b34725b2c";
+const appId = "wx5f789dea59c6c2c5";
 const shareLink = `${baseUrl}/hndt/0423/index.html`;
 const shareTitle = "传大凤凰语言艺术教学与运营管理师资培训(郑州站)重磅来袭！";
 const shareDesc =
