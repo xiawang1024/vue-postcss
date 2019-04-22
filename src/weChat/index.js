@@ -15,4 +15,4 @@ function isWeixinBrowser() {
 // 	weChatConf.init();
 // }
 
-// weChatConf.init()
+weChatConf.init();

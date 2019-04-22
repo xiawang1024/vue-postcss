@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <!-- <sign-up></sign-up> -->
-    <sign-up v-show="!isSignUp"></sign-up>
-    <List v-show="isSignUp"></List>
+    <sign-up></sign-up>
+    <!-- <sign-up v-show="!isSignUp"></sign-up> -->
+    <!-- <List v-show="isSignUp"></List> -->
   </div>
 </template>
 
@@ -32,7 +32,8 @@ export default {
       this._getUserInfo();
     });
     BUS.$on("toList", () => {
-      this.isSignUp = true;
+      // this.isSignUp = true;
+      this._redirectLocation();
     });
   },
   methods: {
@@ -43,33 +44,23 @@ export default {
           .then(res => {
             let { status, data } = res.data;
             if (status === "ok") {
-              this.isSignUp = true;
+              // this.isSignUp = true;
+              this._redirectLocation();
             } else {
               this.isSignUp = false;
             }
           })
           .catch(error => {
-            this.isSignUp = true;
+            // this.isSignUp = true;
+            this._redirectLocation();
           });
       }
+    },
+    _redirectLocation() {
+      window.location = "http://www.hndt.com/nh5/hndt/0423c/index.html";
     }
   }
 };
 </script>
 
-<style lang="scss">
-.home,
-.swiper-container {
-  // position: absolute;
-  // top: 0;
-  // right: 0;
-  // bottom: 0;
-  // left: 0;
-  // width: 100%;
-  // height: 100%;
-  // overflow: auto;
-  // -webkit-overflow-scrolling: touch;
-  // background: url("../../common/imgs/bg.png") top center no-repeat;
-  // background-size: cover;
-}
-</style>
+

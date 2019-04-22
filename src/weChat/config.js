@@ -1,9 +1,9 @@
-const baseUrl = 'http://www.hndt.com/nh5'
-const appId = 'wxdd9c1d7b34725b2c'
-const shareLink = `${baseUrl}/hngd/20190412/index.html`
-const shareTitle = '河南广电传媒集团控股干部大会'
-const shareDesc = '河南广电传媒集团控股干部大会'
-// const shareImg = require('../common/imgs/logo.png');
-const shareImg = `${baseUrl}/hngd/20190412/logo.png`
+const baseUrl = "http://www.hndt.com/nh5";
+const appId = "wxdd9c1d7b34725b2c";
+const shareLink = `${baseUrl}/hndt/20190423/index.html`;
+const shareTitle = "传大凤凰语言艺术教学与运营管理师资培训(郑州站)重磅来袭！";
+const shareDesc =
+  "随着教育培训市场竞争日益激烈，行业内招生模式将要发生变化，由被动营销向主动营销转化，如何在竞争加剧的时期解决机构的管理、运营、市场、招生问题，这将关乎机构的未来发展！";
+const shareImg = `${baseUrl}/hndt/0423/logo.jpg`;
 
-export { appId, shareLink, shareTitle, shareDesc, shareImg }
+export { appId, shareLink, shareTitle, shareDesc, shareImg };
