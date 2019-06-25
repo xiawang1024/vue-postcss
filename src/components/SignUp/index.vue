@@ -1,13 +1,5 @@
 <template>
   <div class="signUp">
-    <div class="top">
-      <div
-        class="logo ani"
-        swiper-animate-effect="flip"
-        swiper-animate-duration="1s"
-        swiper-animate-delay="0s"
-      ></div>
-    </div>
     <div
       class="title ani"
       swiper-animate-effect="fadeInDown"
@@ -25,6 +17,17 @@
         <p class="item">
           <label for>姓名</label>
           <input type="text" v-model="userName">
+        </p>
+      </div>
+      <div
+        class="form ani"
+        swiper-animate-effect="fadeIn"
+        swiper-animate-duration="1s"
+        swiper-animate-delay="0.85s"
+      >
+        <p class="item">
+          <label for>手机号</label>
+          <input type="text" v-model="mobile">
         </p>
       </div>
       <div class="btn-wrap">
@@ -49,9 +52,7 @@ import { WeChat } from "weChat/util";
 const weChat = new WeChat();
 import { signUp, getUserInfo } from "api/index";
 
-import weui from "weui.js";
 
-import companyData from "./data3.js";
 /**
  * Bus
  */
@@ -72,21 +73,11 @@ export default {
     return {
       userName: "",
       mobile: "",
-      company: "",
-      position: "",
       isSingUp: true,
       userInfo: null
     };
   },
-  computed: {
-    department: function() {
-      if (!this.company) {
-        return "点击选择部门";
-      } else {
-        return `${this.company}--${this.position}`;
-      }
-    }
-  },
+
   mounted() {
     BUS.$on("attention", () => {
       let msg = `<p>长按二维码关注"河南广播"公众号</p><p style='color:#f8011e'>（关注后请重新刷新页面）</p>`;
@@ -94,42 +85,27 @@ export default {
     });
   },
   methods: {
-    pickDepart() {
-      weui.picker(companyData, {
-        className: "signUp-weui",
-        defaultValue: [0, 0],
-        onChange: result => {
-          let [company, position] = result;
-          this.company = company.label;
-          this.position = position.label;
-        },
-        onConfirm: result => {
-          console.log(result);
-        },
-        id: "doubleLinePicker"
-      });
-    },
+
+    //提交数据
     postData() {
       if (!this.userName) {
         this._warnTips("请填写您的姓名");
         return;
       }
-      // if (!this.company) {
-      //   this._warnTips("请选择您的部门");
-      //   return;
-      // }
-      // if (!this.position) {
-      //   this._warnTips("请选择您的部门");
-      //   return;
-      // }
+      if (!this.mobile) {
+        this._warnTips("请填写您的手机号");
+        return;
+      }
+      if (!this._checkPhone(this.mobile)) {
+        this._warnTips("请填写正确的手机号");
+        return;
+      }
       let userInfo = JSON.parse(weChat.getStorage(weChatName));
 
       signUp(
         userInfo.openid,
         this.userName,
-        userInfo.headimgurl,
-        this.company,
-        this.position
+        this.mobile,
       )
         .then(res => {
           let { status } = res.data;
@@ -153,7 +129,7 @@ export default {
         title: "签到成功",
         type: "success",
         // message: "即将跳转到节目单",
-        onClose: this._onClose,
+        // onClose: this._onClose,
         customCloseBtnText: "确定"
       };
       this.$refs.simplert.openSimplert(obj);
@@ -175,15 +151,10 @@ export default {
       this.$refs.simplert.openSimplert(obj);
     },
     _attention(message) {
-      function attent() {
-        // window.location =
-        // "https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzU2MzMzNjg0OQ==&scene=126&sessionid=1543280791&subscene=0#wechat_redirect";
-        return false;
-      }
+
       let obj = {
         message,
         type: "info",
-        // onClose: attent,
         customIconUrl: "http://www.hndt.com/nh5/hndt/0423/imgs/qr.jpg",
         hideAllButton: true,
         disableOverlayClick: true
@@ -245,56 +216,44 @@ export default {
   width: 100%;
   height: 100%;
   text-align: center;
-  background: url("http://www.hndt.com/nh5/hndt/0423/imgs/bg.png") center center
-    no-repeat #00777e;
+  background: #ca151d;
 
   background-size: cover;
-  .top {
-    position: relative;
-    width: 100%;
-    height: 80px;
-    text-align: center;
-    .logo {
-      position: absolute;
-      top: 40px;
-      left: 35px;
-      width: 257px;
-      height: 90px;
-      background: url("http://www.hndt.com/nh5/hndt/0423/imgs/logo.png") center
-        center no-repeat;
-      background-size: contain;
-    }
-  }
+
   .title {
-    margin-top: 120px;
+    margin-top: 30px;
     width: 100%;
-    height: 342px;
-    background: url("http://www.hndt.com/nh5/hndt/0423/imgs/title.png") center
-      center no-repeat;
+    height: 589px;
+    background: url("http://www.hndt.com/nh5/out/20190618/imgs/title.png")
+      center center no-repeat;
     background-size: contain;
   }
 
   .form {
     width: 500px;
-    margin: 150px auto 0;
+    margin: 50px auto 0;
     .item {
       display: flex;
       height: 90px;
       align-items: center;
-      margin-bottom: 80px;
+      margin-bottom: 20px;
       padding-bottom: 8px;
       font-size: 32px;
 
       line-height: 1.215;
       // border-bottom: 1px solid #e7d401;
       label {
+        display: inline-block;
         flex: 0 0 120px;
         width: 120px;
+
         font-size: 36px;
         // font-weight: bold;
         color: #fff;
+        text-align: right;
       }
       input {
+        margin-left: 16px;
         flex: 0 0 350px;
         width: 350px;
         height: 100%;
@@ -303,7 +262,7 @@ export default {
         outline: none;
         color: #333;
         padding-left: 20px;
-        border-radius: 10px;
+        border-radius: 16px;
         box-sizing: border-box;
       }
       span {

@@ -94,7 +94,9 @@ class WeChatConf extends WeChat {
     super(props);
   }
   init() {
-    this.hasCode();
+    if (!super.getStorage(weChatName)) {
+      this.hasCode();
+    }
     axios
       .post(SHARE_URL, Qs.stringify({ url: window.location.href }))
       .then(res => {
@@ -125,8 +127,8 @@ class WeChatConf extends WeChat {
             title: shareTitle,
             link: shareLink,
             imgUrl: shareImg,
-            success: function() {},
-            cancel: function() {}
+            success: function () { },
+            cancel: function () { }
           });
           wx.onMenuShareAppMessage({
             title: shareTitle,
@@ -135,8 +137,8 @@ class WeChatConf extends WeChat {
             desc: shareDesc,
             type: "",
             dataUrl: "",
-            success: function() {},
-            cancel: function() {}
+            success: function () { },
+            cancel: function () { }
           });
         });
       });

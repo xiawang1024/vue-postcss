@@ -7,11 +7,9 @@
 </template>
 
 <script>
-const { swiperAnimateCache, swiperAnimate } = require("common/js/animate.js");
 
 import SignUp from "../SignUp/index";
 
-import List from "../List/index";
 import { getUserInfo } from "api/index";
 import { WeChat } from "weChat/util";
 const weChat = new WeChat();
@@ -20,7 +18,6 @@ import { weChatName } from "../../config.js";
 export default {
   components: {
     SignUp,
-    List
   },
   data() {
     return {
@@ -31,10 +28,10 @@ export default {
     BUS.$on("getUserInfo", () => {
       this._getUserInfo();
     });
-    BUS.$on("toList", () => {
-      // this.isSignUp = true;
-      this._redirectLocation();
-    });
+    // BUS.$on("toList", () => {
+    //   // this.isSignUp = true;
+    //   this._redirectLocation();
+    // });
   },
   methods: {
     _getUserInfo() {
@@ -45,14 +42,14 @@ export default {
             let { status, data } = res.data;
             if (status === "ok") {
               // this.isSignUp = true;
-              this._redirectLocation();
+              // this._redirectLocation();
             } else {
               this.isSignUp = false;
             }
           })
           .catch(error => {
             // this.isSignUp = true;
-            this._redirectLocation();
+            // this._redirectLocation();
           });
       }
     },

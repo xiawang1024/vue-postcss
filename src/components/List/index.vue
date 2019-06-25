@@ -27,21 +27,17 @@
 </template>
 
 <script>
-import VueStar from "vue-star";
 import ListData from "./data.js";
 import wx from "weixin-js-sdk";
 export default {
   name: "list",
-  components: {
-    VueStar
-  },
   data() {
     return {
       dataList: ListData,
       zanList: []
     };
   },
-  mounted() {},
+  mounted() { },
   methods: {
     openImg() {
       wx.previewImage({

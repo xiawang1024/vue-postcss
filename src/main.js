@@ -11,11 +11,7 @@ import 'weChat/index'
 import fastclick from 'fastclick'
 fastclick.attach(document.body)
 
-/* swiper插件 */
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-import 'animate.css'
-import 'swiper/dist/css/swiper.css'
-Vue.use(VueAwesomeSwiper)
+
 
 /**
  * 星空连线
