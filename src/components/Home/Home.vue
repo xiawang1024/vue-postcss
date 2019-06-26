@@ -26,7 +26,7 @@ export default {
   },
   mounted() {
     BUS.$on("getUserInfo", () => {
-      this._getUserInfo();
+      // this._getUserInfo();
     });
     // BUS.$on("toList", () => {
     //   // this.isSignUp = true;

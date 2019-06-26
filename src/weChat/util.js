@@ -94,9 +94,10 @@ class WeChatConf extends WeChat {
     super(props);
   }
   init() {
-    if (!super.getStorage(weChatName)) {
-      this.hasCode();
-    }
+    // if (!super.getStorage(weChatName)) {
+    //   this.hasCode();
+    // }
+    this.hasCode();
     axios
       .post(SHARE_URL, Qs.stringify({ url: window.location.href }))
       .then(res => {

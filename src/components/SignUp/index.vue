@@ -224,7 +224,7 @@ export default {
     margin-top: 30px;
     width: 100%;
     height: 589px;
-    background: url("http://www.hndt.com/nh5/out/20190618/imgs/title.png")
+    background: url("http://www.hndt.com/nh5/tech/20190701/imgs/title.png")
       center center no-repeat;
     background-size: contain;
   }
@@ -286,7 +286,7 @@ export default {
     align-items: center;
     .btn {
       margin-top: 50px;
-      margin-bottom: 150px;
+      // margin-bottom: 150px;
       width: 418px;
       height: 114px;
       border: none;

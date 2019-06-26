@@ -38,7 +38,7 @@ const signUp = (openId, name, avatar, company, position, signId = 8) =>
  * @param {*} openId
  * @param {*} signId
  */
-const getUserInfo = (openId, signId = 7) =>
+const getUserInfo = (openId, signId = 8) =>
   axios.post(
     "/openapi/sign/info",
     Qs.stringify({
